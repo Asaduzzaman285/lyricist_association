@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+.container-fluid {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+.slider-container {
+    /* margin: 20px auto; */
+    margin-top: -1px;
+    min-width: 93vw;
+    overflow: hidden; 
+   
+  }
+  .carousel-control-prev, .carousel-control-next, .carousel-indicators { display: none;}
+  @font-face {
+    font-family: 'LiAlinurNakkhatra';
+    src: url('/fonts/LiAlinurNakkhatraUnicode.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .bangla-text {
+    font-family: 'LiAlinurNakkhatra', sans-serif;
+     font-size: 50px;
+  }
+  .carousel-caption {
+    /* background-color: rgba(0, 0, 0, 0.7);  */
+    background-color: inherit;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .logo {
+    width: 216px;
+    height: 42px;
+    margin-left: 21px; /* Space from the left */
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 500px; /* Adjust the height of the carousel images */
+    object-fit: cover;
+  }
+  
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1); /* Invert arrow colors for better visibility */
+  }
+  .slider-text{
+    font-family: 'Inter', sans-serif; 
+  }

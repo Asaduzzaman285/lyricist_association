@@ -1,0 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+@font-face {
+  font-family: 'LiAlinurNakkhatra';
+  src: url('/fonts/LiAlinurNakkhatraUnicode.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
