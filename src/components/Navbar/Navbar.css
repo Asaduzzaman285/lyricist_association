@@ -1,63 +1,68 @@
-/* Basic Navbar Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* Apply Inter font to the entire Navbar */
+/* Navbar Container */
 .navbar {
-    font-family: 'Inter', sans-serif; /* Set the font family */
-    background-color: #000; /* Optional: Black background to match the Figma design */
-    padding: 10px 20px; /* Add some padding */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff; /* White text */
-  }
+  font-family: 'Inter', sans-serif;
+  background-color: #000; /* Black background */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff; /* White text for contrast */
+}
 
+/* Logo Styling */
 .navbar-logo .logo {
   width: 216px;
   height: 42px;
   margin-left: 21px; /* Space from the left */
 }
+
+/* Navigation Links */
+.navbar-links {
+  list-style: none; /* Remove bullets */
+  display: flex; /* Display links horizontally */
+  gap: 25px; /* Add spacing between links */
+  margin: 0;
   
-  /* Navigation Links */
+  padding: 0;
+  margin-right: 4%;
+}
+
+.navbar-links li {
+  font-size: 14px;
+  font-weight: 600; /* Semi-bold for better readability */
+}
+
+.navbar-links a {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* White text */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.navbar-links a:hover {
+  color: #007bff; /* Blue color on hover for interactivity */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  .navbar-logo {
+    margin-bottom: 10px; /* Space below the logo for smaller screens */
+  }
+
   .navbar-links {
-    list-style: none; /* Remove bullets */
-    display: flex; /* Display links horizontally */
-    gap: 20px; /* Add spacing between links */
-    margin: 0;
-    padding: 0;
-    margin-right: 4%;
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px; /* Reduce spacing for compact layout */
+    width: 100%; /* Full-width for links */
   }
-  
+
   .navbar-links li {
-    font-size: 16px;
-    font-weight: 600; /* Semi-bold for clarity */
+    margin: 5px 0; /* Add vertical spacing between links */
   }
-  
-  .navbar-links a {
-    text-decoration: none; /* Remove underline */
-    color: #fff; /* White text */
-    transition: color 0.3s; /* Add hover effect */
-  }
-  
-  .navbar-links a:hover {
-    color: #007bff; /* Change color on hover */
-  }
-  
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-links {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .navbar-links li {
-      margin: 10px 0;
-    }
-  }
-  
+}

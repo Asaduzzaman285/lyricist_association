@@ -1,0 +1,56 @@
+/* Card Styles */
+.story-card {
+    background-color: rgb(245, 245, 255); /* Soft pastel color */
+    border: 1px solid rgb(200, 200, 255); /* Subtle border matching the theme */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .story-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Title Styles */
+  .card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(40, 40, 80); /* Deep blue for strong visibility */
+  }
+  
+  /* Subtitle Styles */
+  .card-subtitle {
+    font-size: 1rem;
+    color: rgb(80, 80, 120); /* Muted blue-gray for subtle highlight */
+    margin-bottom: 12px;
+  }
+  
+  /* Body Text */
+  .card-text {
+    font-size: 1rem;
+    color: rgb(60, 60, 100); /* Smooth contrasting tone */
+    line-height: 1.6; /* Improved readability */
+  }
+  
+  /* Event Text */
+  .card-event {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(120, 120, 200); /* Highlighted pastel blue */
+    margin-top: 10px;
+  }
+  
+  /* Pagination Styles */
+  .pagination .page-item.active .page-link {
+    background-color: rgb(0, 123, 255);
+    border-color: rgb(0, 123, 255);
+    color: #fff;
+  }
+  
+  .pagination .page-link {
+    color: rgb(0, 123, 255);
+    font-weight: bold;
+  }
+  
+  

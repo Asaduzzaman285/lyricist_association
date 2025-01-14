@@ -1,0 +1,111 @@
+/* Footer Container */
+.footer-container {
+    background: #242424;
+    color: #fff;
+    text-align: center;
+    /* padding: 3px 20px; */
+    margin-top: 50px;
+  }
+  
+  /* Footer Background */
+  .footer-bg {
+    background-image: url('assets/images/footer-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  /* Footer Title */
+  .footer-title {
+    font-size: 2.5rem;
+    font-family: 'Cursive', sans-serif;
+    margin-bottom: 30px;
+  }
+  
+/* Musician Section */
+.musician-section {
+  background-image: url('assets/images/Overlayimg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  flex-wrap: wrap;
+  height: 350px;
+  margin-top: -14px;
+  margin-bottom: 20px;
+}
+
+/* Musician Card */
+.musician-card {
+  text-align: center;
+  margin: 10px;
+  color: #fff;
+  position: relative; /* Add position relative to control child elements */
+}
+
+/* Background Image */
+.musician-card .bg-image {
+  
+  position: absolute;
+  left: 95%;
+  transform: translate(-50%, -50%) rotate(-17.52deg);
+  width: 420px; /* Adjust width for better scaling */
+  z-index: 1; /* Ensure it stays below the overlay image */
+}
+
+/* Overlay Image */
+.musician-card .overlay-img {
+  position: relative;
+  z-index: 2; /* Ensure it overlays the background image */
+  border-radius: 8px;
+  left: 30%;
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  overflow: visible;
+  margin-top: 20px; /* Adjust spacing as needed */
+}
+
+/* Musician Name */
+.musician-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+/* Musician Role */
+.musician-role {
+  font-size: 0.9rem;
+  color: #ccc;
+  text-align: left;
+}
+
+  
+  /* Footer Info */
+  .footer-info {
+    margin-top: 20px;
+  }
+  
+  .footer-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Ticket Button */
+  .ticket-button {
+    background: #e50914;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .ticket-button:hover {
+    background: #ff4b5c;
+  }
+  

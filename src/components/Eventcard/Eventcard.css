@@ -1,0 +1,104 @@
+/* Container Styling */
+.event-container {
+    /* background-color: #1b1b1b; */
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .event-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+    font-family: nunito;
+  }
+  .typograph-text{
+    width: 150px;
+    height: 85px;
+    font-family: "Licorice", serif;
+    font-weight: 400;
+    font-size: 70px;
+  }
+  /* Card Styling */
+  .event-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Ensures content aligns properly */
+    /* background-color: #111; */
+   
+    overflow: hidden;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
+  }
+  
+  .card-image {
+    
+    max-height: 400px;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card-contents {
+    max-height: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  
+  .artist-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .artist-name span {
+    /* font-family: 'Brush Script MT', cursive; */
+    font-size: 2rem;
+    color: #ffa500;
+  }
+  
+  .details {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .event-info {
+    margin: 15px 0;
+    font-size: 1rem;
+  }
+  
+  .ticket-button {
+    width: 50%;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ticket-button:hover {
+    background-color: #cc0000;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .event-card {
+      flex-direction: column;
+    }
+  
+    .card-image,
+    .card-content {
+      flex: 1 1 100%; /* Both sections will take full width on small screens */
+    }
+  }
+  
+  
