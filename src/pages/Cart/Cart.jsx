@@ -1,31 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 import './Cart.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [productsData, setProductsData] = useState([]);
   const [userInfo, setUserInfo] = useState({
     name: '',
     phone: '',
     email: '',
-    location: '',
-    address: '',
+    shippingAddress: '',
     paymentMethod: ''
   });
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     setCart(cartItems);
+    fetchPaymentMethods();
+    if (cartItems.length > 0) {
+      fetchProductsData(cartItems.map(item => item.id));
+    }
   }, []);
 
-  const handleProceed = () => {
-    setShowModal(true);
+  const fetchPaymentMethods = async () => {
+    try {
+      const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/payment-methods');
+      const data = await response.json();
+      if (data.status === 'success') {
+        setPaymentMethods(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching payment methods:', error);
+    }
   };
 
-  const handleClose = () => {
-    setShowModal(false);
+  const fetchProductsData = async (productIds) => {
+    try {
+      const queryString = productIds
+        .map((id, index) => `product_ids[${index}]=${id}`)
+        .join('&');
+      const response = await fetch(`https://lyricistapi.wineds.com/api/v1/cart/products-data?${queryString}`);
+      const data = await response.json();
+      if (data.status === 'success') {
+        setProductsData(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching product data:', error);
+    }
+  };
+
+  const calculateSubtotal = () => {
+    return cart.reduce((total, item) => total + (parseFloat(item.price) * (item.quantity || 1)), 0);
+  };
+
+  const calculateDeliveryCharge = () => {
+    return 80; // Default delivery charge
+  };
+
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateDeliveryCharge();
   };
 
   const handleChange = (e) => {
@@ -33,23 +70,74 @@ const Cart = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to the server
-    console.log('User Info:', userInfo);
-    console.log('Cart Items:', cart);
-    // Clear cart and user info after submission
-    localStorage.removeItem('cart');
-    setCart([]);
-    setUserInfo({
-      name: '',
-      phone: '',
-      email: '',
-      location: '',
-      address: '',
-      paymentMethod: ''
-    });
-    setShowModal(false);
+
+    const payload = {
+      name: userInfo.name,
+      email: userInfo.email,
+      phone: userInfo.phone,
+      shipping_address: userInfo.shippingAddress,
+      payment_method_id: parseInt(userInfo.paymentMethod),
+      order_detail: cart.map(item => ({
+        product_id: item.id,
+        price: parseFloat(item.price),
+        qty: item.quantity || 1,
+        total: item.price * (item.quantity || 1)
+      })),
+      sub_total: calculateSubtotal(),
+      delivery_charge: calculateDeliveryCharge(),
+      total: calculateTotal()
+    };
+
+    try {
+      const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/order-placement', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+      if (data.status === 'success') {
+        console.log('Order placed successfully:', data);
+        // Clear the cart and user info
+        setCart([]);
+        setUserInfo({
+          name: '',
+          phone: '',
+          email: '',
+          shippingAddress: '',
+          paymentMethod: ''
+        });
+        localStorage.removeItem('cart');
+        // Show success message
+        setShowSuccessMessage(true);
+        // Hide success message after 2-3 seconds
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+          // Reload the page
+          window.location.reload();
+        }, 3000);
+      } else {
+        console.error('Error placing order:', data);
+        // Show error message
+        setShowErrorMessage(true);
+        // Hide error message after 2-3 seconds
+        setTimeout(() => {
+          setShowErrorMessage(false);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      // Show error message
+      setShowErrorMessage(true);
+      // Hide error message after 2-3 seconds
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
+    }
   };
 
   const handleRemove = (index) => {
@@ -58,67 +146,196 @@ const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  const handleQuantityChange = (index, change) => {
+    const updatedCart = [...cart];
+    const item = updatedCart[index];
+    if (!item.quantity) item.quantity = 1;
+    
+    const newQuantity = item.quantity + change;
+    if (newQuantity > 0) {
+      item.quantity = newQuantity;
+      setCart(updatedCart);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  };
+
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <h1 className="text-center my-4">Cart Page</h1>
-        <div className="cart-list">
-          {cart.map((book, index) => (
-            <div key={index} className="cart-item d-flex flex-row p-3" style={{ backgroundColor: "rgba(165, 239, 255, 0.2)" }}>
-              <img src={`https://lyricistadminapi.wineds.com${book.file_path}`} alt={book.name} className="img-fluid cart-image" />
-              <div className="card-body text-start text-light">
-                <h2 className="card-title">{book.name}</h2>
-                <h5>By {book.member.name}</h5>
-                <p className="card-text text-start">{book.price} BDT Only</p>
-              </div>
-              <Button variant="danger" onClick={() => handleRemove(index)}>Remove</Button>
+      <div className="container-fluid ">
+        <div className="row">
+          <div className="col-md-8" style={{minHeight:"100vh"}}>
+            <h1 className="text-center my-4 text-light">Shopping Cart</h1>
+            {showSuccessMessage && (
+              <Alert variant="success" onClose={() => setShowSuccessMessage(false)} dismissible>
+                Order placed successfully!
+              </Alert>
+            )}
+            {showErrorMessage && (
+              <Alert variant="danger" onClose={() => setShowErrorMessage(false)} dismissible>
+                Error placing order. Please try again.
+              </Alert>
+            )}
+            <div className="cart-list">
+              {cart.map((book, index) => (
+                <div key={index} className="cart-item d-flex">
+                  {/* Image Section */}
+                  <div className="image-section position-relative">
+                    {book.isOnSale && <div className="super-deal-badge text-light">Super Deal</div>}
+                    <img 
+                      src={`https://lyricistadminapi.wineds.com${book.file_path}`} 
+                      alt={book.name} 
+                      className="cart-image"
+                    />
+                  </div>
+                  
+                  {/* Details Section */}
+                  <div className="details-section text-start text-light">
+                    <h2 className="card-title">{book.name}</h2>
+                    <h5>By {book.member?.name}</h5>
+                    <p className="card-text mt-3 text-start text-danger">{book.price} BDT Only</p>
+                  </div>
+                  
+                  {/* Actions Section */}
+                  <div className="actions-section d-flex flex-column justify-content-between">
+                    <Button 
+                      variant="link" 
+                      className="text-danger delete-btn"
+                      onClick={() => handleRemove(index)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </Button>
+                    <div className="counter-section d-flex align-items-center text-light">
+                      <button 
+                        className="btn btn-outline-secondary"
+                        onClick={() => handleQuantityChange(index, -1)}
+                      >
+                        -
+                      </button>
+                      <span className="mx-3">{book.quantity || 1}</span>
+                      <button 
+                        className="btn btn-outline-secondary"
+                        onClick={() => handleQuantityChange(index, 1)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        {cart.length > 0 && (
-          <div className="text-center my-4">
-            <Button variant="primary" onClick={handleProceed}>Proceed</Button>
-          </div>
-        )}
-      </div>
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Enter Your Information</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="name" value={userInfo.name} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group controlId="formPhone">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control type="text" name="phone" value={userInfo.phone} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={userInfo.email} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group controlId="formLocation">
-              <Form.Label>Location</Form.Label>
-              <Form.Control type="text" name="location" value={userInfo.location} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group controlId="formAddress">
-              <Form.Label>Address</Form.Label>
-              <Form.Control type="text" name="address" value={userInfo.address} onChange={handleChange} required />
-            </Form.Group>
-            <Form.Group controlId="formPaymentMethod">
-              <Form.Label>Payment Method</Form.Label>
-              <Form.Control type="text" name="paymentMethod" value={userInfo.paymentMethod} onChange={handleChange} required />
-            </Form.Group>
-            <Button variant="primary" type="submit" className="mt-3">Submit</Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
+            {cart.length > 0 && (
+              <Form onSubmit={handleSubmit} className="user-info-form mt-4 p-4">
+                <h3 className="mb-4">Shipping Information</h3>
+                <div className="row">
+                  <div className="col-md-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name"
+                        value={userInfo.name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                  <div className="col-md-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Phone</Form.Label>
+                      <Form.Control
+                        type="tel"
+                        name="phone"
+                        value={userInfo.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                </div>
+                <Form.Group className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    value={userInfo.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Shipping Address</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    name="shippingAddress"
+                    value={userInfo.shippingAddress}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 ">
+                  <Form.Label>Payment Method</Form.Label>
+                  <Form.Select
+                  name="paymentMethod"
+                  value={userInfo.paymentMethod}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Payment Method</option>
+                  {paymentMethods.map(method => (
+                    <option key={method.id} value={method.id} className='bg-dark text-light'>
+                      {method.payment_method}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+              <Button 
+                variant="primary" 
+                className="w-100 mt-4"
+                type="submit"
+                onClick={handleSubmit}
+                disabled={cart.length === 0}
+              >
+                Place Order
+              </Button>
+            </Form>
+          )}
+        </div>
+
+        <div className="col-md-4">
+          <div className="checkout-summary mt-4">
+            <h2>Order Summary</h2>
+            <div className="summary-item">
+              <span>Subtotal</span>
+              <span>{calculateSubtotal()} TK.</span>
+            </div>
+            <div className="summary-item">
+              <span>Delivery Charge</span>
+              <span>{calculateDeliveryCharge()} TK.</span>
+            </div>
+            <hr />
+            <div className="summary-item">
+              <span>Total</span>
+              <span>{calculateTotal()} TK.</span>
+            </div>
+            <Button 
+              variant="primary" 
+              className="w-100 mt-4"
+              type="submit"
+              onClick={handleSubmit}
+              disabled={cart.length === 0}
+            >
+              Place Order
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  </div>
+
+);
 };
 
 export default Cart;

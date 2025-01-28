@@ -1,25 +1,115 @@
 .cart-item {
-    background-color: rgba(165, 239, 255, 0.2);
-    margin-bottom: 1rem;
-    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    padding: 1rem;
+  }
+  
+  .cart-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .image-section {
+    flex: 1; /* 30–40% of the width */
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .cart-image {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: auto;
     object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .details-section {
+    flex: 2; /* Middle section */
+    margin-left: 1rem;
+  }
+  
+  .actions-section {
+    flex: 1; /* Right section */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  
+  .counter-section {
+    margin-top: auto;
   }
   
   .card-title {
-    font-size: 1.25rem;
-  }
-   
-  .card-text {
-    font-size: 0.875rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f1f1f1;
+    margin-bottom: 0.5rem;
   }
   
-  button.btn-danger {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  .card-text {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+  }
+  
+  .delete-btn {
+    color: #e53935;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+  }
+  
+  .delete-btn:hover {
+    color: #c62828;
+  }
+  .checkout-summary {
+    /* background: linear-gradient(135deg, #b5c5c2, #404558); */
+    background: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
+  }
+  
+  .summary-item {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    color: #0f0e0e;
+  }
+  
+  .user-info-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-top: 2rem;
+  }
+  
+  .user-info-form h3 {
+    color: #f1f1f1;
+  }
+  
+  .user-info-form label {
+    color: #e0e0e0;
+  }
+  
+  .user-info-form .form-control,
+  .user-info-form .form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f1f1f1;
+  }
+  
+  .user-info-form .form-control:focus,
+  .user-info-form .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #f1f1f1;
   }
