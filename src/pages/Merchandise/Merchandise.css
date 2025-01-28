@@ -1,0 +1,80 @@
+/* Container Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Book List Styles */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Book Card Styles */
+.book-card {
+  background-color: rgb(245, 245, 255); /* Soft pastel color */
+  border: 1px solid rgb(200, 200, 255); /* Subtle border matching the theme */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px; 
+  width: 100%; /* Full width */
+}
+
+.book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styles */
+.book-image {
+  width: 50%; /* 50% width */
+  height: 280px; /* Maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+  margin-right: 20px;
+}
+
+/* Card Body Styles */
+.card-body {
+  width: 50%; /* 50% width */
+}
+
+/* Title Styles */
+.card-title {
+  font-size: 1.2rem; /* Slightly smaller font size */
+  font-weight: bold;
+}
+
+/* Author Styles */
+.card-body h5 {
+  font-size: 1rem;
+  line-height: 1.6; /* Improved readability */
+}
+
+/* Price Styles */
+.card-text {
+  font-size: 1rem; /* Slightly smaller font size */
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* Button Styles */
+.book-card button {
+  color: #fff;
+  padding: 8px; /* Reduced padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-card button:hover {
+  background-color: rgb(0, 105, 217);
+}

@@ -21,6 +21,8 @@ const Navbar = () => {
         <li><Link to="/merchandise">Merchandise</Link></li>
         <li><Link to="/podcast">Podcast</Link></li>
         <li><Link to="/ec-committee">EC Committee</Link></li>
+        <li><Link to="/cart"><i class="fa-solid fa-cart-shopping"></i>
+        </Link></li>
       </ul>
     </nav>
   );

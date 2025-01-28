@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "title": "Demo Book",
+      "author": "John Doe",
+      "image": "/assets/images/arnab.png",
+      "price": 19.99
+    },
+    {
+      "id": 2,
+      "title": "Another Book",
+      "author": "Jane Smith",
+      "image": "/assets/images/arnab.png",
+      "price": 29.99
+    }
+  ]

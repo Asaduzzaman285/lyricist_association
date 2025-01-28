@@ -3,56 +3,53 @@ import { Modal, Button, Form } from "react-bootstrap";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Events.css";
 
-const EventsPage = () => {
+const Events = () => {
   const [events, setEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    payment: ""
+    payment: "",
   });
 
-  const eventsPerPage = 4;
+  const baseUrl = "https://lyricistapi.wineds.com";
+  const imageUrl=  "https://lyricistadminapi.wineds.com";
+  const apiUrl = `${baseUrl}/api/v1/events/list-paginate`;
 
   // Fetch data from the API
   useEffect(() => {
-    const fetchEvents = () => {
-      fetch("http://127.0.0.1:8000/api/events")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setEvents(
-            data.map((event) => ({
-              id: event.id,
-              image: event.image,
-              title: event.eventName,
-              artist: event.artistName,
-              description: event.description,
-              date: event.eventDate,
-              location: event.location,
-            }))
-          );
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-    };
-  
-    fetchEvents(); // Initial fetch
-    const interval = setInterval(fetchEvents, 5000); // Fetch every 5 seconds
-  
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, []);
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${apiUrl}?page=${currentPage}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
 
-  // Calculate pagination
-  const indexOfLastEvent = currentPage * eventsPerPage;
-  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+        const { paginator, data: eventsData } = data.data;
+        setEvents(
+          eventsData.map((event) => ({
+            id: event.id,
+            image: `${imageUrl}${event.file_path}`,
+            title: event.title,
+            artist: event.artist,
+            description: event.description,
+            date: event.date,
+            location: event.location,
+          }))
+        );
+        setTotalPages(paginator.total_pages);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchEvents();
+  }, [currentPage]);
 
   // Handle pagination
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -85,30 +82,26 @@ const EventsPage = () => {
       <div className="container-fluid bg-dark" style={{ marginTop: "-24px" }}>
         <div className="container mt-4">
           <h1 className="text-light">Upcoming Events</h1>
-          <div className="row">
-            {currentEvents.map((event) => (
-              <div className="col-md-6 mb-4" key={event.id}>
-                <div className="card">
-                  <div className="card-body">
+          <div className="row mt-5">
+            {events.map((event) => (
+              <div className="col-12 mb-4" key={event.id}>
+                <div className="cards event-card d-flex flex-row p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
+                  {event.image && (
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="card-img-top"
+                      className="img-fluid event-image "
                     />
-                    <h5 className="card-title">{event.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
+                  )}
+                  <div className="card-body w-50 text-start text-light">
+                    <h2 className="card-title">{event.title}</h2>
+                    <h5> Date: {event.date} </h5>
+                    <h5> Location: {event.location}</h5>
+                    <h6 className="card-subtitle mb-2 text-highlight">
                       By {event.artist}
                     </h6>
-                    <p className="card-text text-start">{event.description}</p>
-                    <p className="card-text text-start text-muted">
-                      Date: {event.date} | Location: {event.location}
-                    </p>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => handleShowModal(event)}
-                    >
-                      Get Tickets
-                    </button>
+                    <p className="card-text text-start fw-normal">{event.description}</p>
+                    <button type="button" className="btn btn-light text-start w-25" onClick={() => handleShowModal(event)}>Get Tickets</button>
                   </div>
                 </div>
               </div>
@@ -118,12 +111,15 @@ const EventsPage = () => {
           {/* Pagination */}
           <nav>
             <ul className="pagination justify-content-center">
-              {Array.from({ length: Math.ceil(events.length / eventsPerPage) }, (_, i) => (
+              {Array.from({ length: totalPages }, (_, i) => (
                 <li
                   key={i}
                   className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
                 >
-                  <button className="page-link" onClick={() => paginate(i + 1)}>
+                  <button
+                    className="page-link"
+                    onClick={() => paginate(i + 1)}
+                  >
                     {i + 1}
                   </button>
                 </li>
@@ -132,11 +128,24 @@ const EventsPage = () => {
           </nav>
 
           {/* Modal */}
-          <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal show={showModal} onHide={handleCloseModal} dialogClassName="custom-modal-width">
             <Modal.Header closeButton>
-              <Modal.Title>Get Tickets for {selectedEvent?.title}</Modal.Title>
+              <Modal.Title>
+                Get Tickets for {selectedEvent?.title}
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              {selectedEvent?.image && (
+                <img
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                  className="img-fluid"
+                  style={{ width: '100%', borderRadius: '8px' }}
+                />
+              )}
+              <h5 className="mt-3">{selectedEvent?.artist}</h5>
+              <h6 className="text-muted">Date: {selectedEvent?.date} | Location: {selectedEvent?.location}</h6>
+              <p className="mt-3">{selectedEvent?.description}</p>
               <Form onSubmit={handleFormSubmit}>
                 <Form.Group className="mb-3" controlId="formName">
                   <Form.Label>Name</Form.Label>
@@ -194,4 +203,4 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+export default Events;

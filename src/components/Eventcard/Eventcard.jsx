@@ -8,7 +8,7 @@ const Eventcard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/events");
+        const response = await fetch("https://lyricistapi.wineds.com/api/v1/events/list-paginate");
         if (!response.ok) {
           throw new Error("Failed to fetch events");
         }
@@ -16,9 +16,9 @@ const Eventcard = () => {
 
         // Parse and sort events by date
         const today = new Date();
-        const sortedEvents = data
-          .filter((event) => new Date(event.eventDate) >= today) // Filter future events
-          .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate)); // Sort by closest date
+        const sortedEvents = data.data.data
+          .filter((event) => new Date(event.date) >= today) // Filter future events
+          .sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by closest date
 
         if (sortedEvents.length > 0) {
           setClosestEvent(sortedEvents[0]); // Set the closest event
@@ -43,19 +43,19 @@ const Eventcard = () => {
             <div className="event-card">
               <div className="card-image w-50">
                 <img
-                  src={closestEvent.image}
-                  alt={closestEvent.eventName}
+                  src={`https://lyricistadminapi.wineds.com${closestEvent.file_path}`}
+                  alt={closestEvent.title}
                 />
               </div>
               <div className="card-contents w-50 text-light">
                 <h2 className="artist-name">
-                  <span className="typograph-text">{closestEvent.artistName}</span>{" "}
+                  <span className="typograph-text">{closestEvent.artist}</span>{" "}
                   Rhythm Odyssey
                 </h2>
                 <p className="details">{closestEvent.description}</p>
                 <div className="event-info">
                   <p>
-                    <strong>Time:</strong> {closestEvent.eventDate}
+                    <strong>Time:</strong> {closestEvent.date}
                   </p>
                   <p>
                     <strong>Location:</strong> {closestEvent.location}
@@ -75,8 +75,3 @@ const Eventcard = () => {
 };
 
 export default Eventcard;
-   
-
-
-
-

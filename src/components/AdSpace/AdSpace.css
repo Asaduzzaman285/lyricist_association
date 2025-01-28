@@ -1,0 +1,14 @@
+.ad-space {
+    width: 100%;
+    text-align: start;
+    margin-top: 20px;
+  }
+  
+  .ad-space img {
+    width: 100%;
+    /* height: auto; 
+    max-height: 150px;  */
+    object-fit: contain; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './Card.css'; // Import the CSS file
 
 const getEmbedUrl = (url) => {
   const videoId = url.split('v=')[1]?.split('&')[0]; 
@@ -10,19 +10,18 @@ const getEmbedUrl = (url) => {
 
 const LyricistCard = ({ image, name, bio, additionalImage, videoUrl }) => {
   return (
-    <Container fluid style={{ background: '#242424', color: 'white' ,marginBottom:'45px'}}> 
-      <Card className="w-100 my-3"  >
+    <Container fluid style={{ background: '#242424', color: 'white', marginBottom: '45px' }}> 
+      <Card className="w-100 my-3 card">
         <Card.Img
           variant="top"
           src={image}
           alt="Lyricist Image"
-          style={{ objectFit: 'cover' }} 
         />
         <Card.Body style={{ background: '#D9D9D9', textAlign: 'center' }}>
-          <Card.Title style={{textAlign: 'start' }}>{name}</Card.Title>
-          <Card.Text className='text-dark' style={{ textAlign: 'start', maxWidth: '100%', fontSize: 'medium' }}>{bio}</Card.Text>
+          <Card.Title style={{ textAlign: 'start' }}>{name}</Card.Title>
+          <Card.Text className='text-dark' style={{ textAlign: 'start', maxWidth: '100%', fontSize: 'small' }}>{bio}</Card.Text>
           {/* Additional Image Container */}
-          <div >
+          <div>
             <Card.Img
               src={additionalImage}
               alt="Additional Image"
@@ -39,7 +38,6 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl }) => {
           </div>
         </Card.Body>
       </Card>
-   
     </Container>
   );
 };

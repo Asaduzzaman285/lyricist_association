@@ -1,0 +1,25 @@
+.cart-item {
+    background-color: rgba(165, 239, 255, 0.2);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .cart-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+   
+  .card-text {
+    font-size: 0.875rem;
+  }
+  
+  button.btn-danger {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
