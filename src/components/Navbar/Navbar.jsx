@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/images/lyricist-logo.png';
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
+  const cartItemCount = cart ? cart.length : 0;
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -19,9 +20,9 @@ const Navbar = () => {
         <li><Link to="/success-stories">Success Stories</Link></li>
         <li><Link to="/events">Events</Link></li>
         <li><Link to="/merchandise">Merchandise</Link></li>
-        <li><Link to="/podcast">Podcast</Link></li>
-        <li><Link to="/ec-committee">EC Committee</Link></li>
-        <li><Link to="/cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-secondary">4</span>
+        {/* <li><Link to="/podcast">Podcast</Link></li>
+        <li><Link to="/ec-committee">EC Committee</Link></li> */}
+        <li><Link to="/cart"><i class="fa-solid fa-cart-shopping"></i><span class="badge bg-danger">{cartItemCount}</span>
         </Link></li>
       </ul>
     </nav>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import { Button, Form, Alert } from 'react-bootstrap';
+
 import './Cart.css';
 
 const Cart = () => {
@@ -58,7 +59,7 @@ const Cart = () => {
   };
 
   const calculateDeliveryCharge = () => {
-    return 80; // Default delivery charge
+    return 80; 
   };
 
   const calculateTotal = () => {
@@ -112,19 +113,19 @@ const Cart = () => {
           paymentMethod: ''
         });
         localStorage.removeItem('cart');
-        // Show success message
+       
         setShowSuccessMessage(true);
-        // Hide success message after 2-3 seconds
+       
         setTimeout(() => {
           setShowSuccessMessage(false);
-          // Reload the page
-          window.location.reload();
+      
+          window.location.href = '/';
         }, 3000);
       } else {
         console.error('Error placing order:', data);
-        // Show error message
+       
         setShowErrorMessage(true);
-        // Hide error message after 2-3 seconds
+      
         setTimeout(() => {
           setShowErrorMessage(false);
         }, 3000);
@@ -161,10 +162,11 @@ const Cart = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="container-fluid ">
+      <Navbar cart={cart} />
+      
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-8" style={{minHeight:"100vh"}}>
+          <div className="col-md-8" style={{ minHeight: "100vh" }}>
             <h1 className="text-center my-4 text-light">Shopping Cart</h1>
             {showSuccessMessage && (
               <Alert variant="success" onClose={() => setShowSuccessMessage(false)} dismissible>
@@ -275,67 +277,68 @@ const Cart = () => {
                     required
                   />
                 </Form.Group>
-                <Form.Group className="mb-3 ">
+                <Form.Group className="mb-3">
                   <Form.Label>Payment Method</Form.Label>
                   <Form.Select
-                  name="paymentMethod"
-                  value={userInfo.paymentMethod}
-                  onChange={handleChange}
-                  required
+                    name="paymentMethod"
+                    value={userInfo.paymentMethod}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Payment Method</option>
+                    {paymentMethods.map(method => (
+                      <option key={method.id} value={method.id} className='bg-dark text-light'>
+                        {method.payment_method}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+                <Button 
+                  variant="primary" 
+                  className="w-100 mt-4"
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={cart.length === 0}
                 >
-                  <option value="">Select Payment Method</option>
-                  {paymentMethods.map(method => (
-                    <option key={method.id} value={method.id} className='bg-dark text-light'>
-                      {method.payment_method}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-              <Button 
-                variant="primary" 
-                className="w-100 mt-4"
-                type="submit"
-                onClick={handleSubmit}
-                disabled={cart.length === 0}
-              >
-                Place Order
-              </Button>
-            </Form>
-          )}
-        </div>
-
-        <div className="col-md-4">
-          <div className="checkout-summary mt-4">
-            <h2>Order Summary</h2>
-            <div className="summary-item">
-              <span>Subtotal</span>
-              <span>{calculateSubtotal()} TK.</span>
-            </div>
-            <div className="summary-item">
-              <span>Delivery Charge</span>
-              <span>{calculateDeliveryCharge()} TK.</span>
-            </div>
-            <hr />
-            <div className="summary-item">
-              <span>Total</span>
-              <span>{calculateTotal()} TK.</span>
-            </div>
-            <Button 
-              variant="primary" 
-              className="w-100 mt-4"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={cart.length === 0}
-            >
-              Place Order
-            </Button>
+                  Place Order
+                </Button>
+              </Form>
+            )}
           </div>
+
+          {cart.length > 0 && (
+            <div className="col-md-4">
+              <div className="checkout-summary mt-4">
+                <h2>Order Summary</h2>
+                <div className="summary-item">
+                  <span>Subtotal</span>
+                  <span>{calculateSubtotal()} TK.</span>
+                </div>
+                <div className="summary-item">
+                  <span>Delivery Charge</span>
+                  <span>{calculateDeliveryCharge()} TK.</span>
+                </div>
+                <hr />
+                <div className="summary-item">
+                  <span>Total</span>
+                  <span>{calculateTotal()} TK.</span>
+                </div>
+                <Button 
+                  variant="primary" 
+                  className="w-100 mt-4"
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={cart.length === 0}
+                >
+                  Place Order
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
-  </div>
-
-);
+  );
 };
 
 export default Cart;

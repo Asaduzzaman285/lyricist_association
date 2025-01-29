@@ -79,7 +79,7 @@ const Events = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-dark" style={{ marginTop: "-24px" }}>
+      <div className="container-fluid bg-dark" style={{ marginTop: "-24px", minHeight: "100vh" }}>
         <div className="container mt-4">
           <h1 className="text-light">Upcoming Events</h1>
           <div className="row mt-5">

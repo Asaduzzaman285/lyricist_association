@@ -44,7 +44,7 @@ const Footer = () => {
           <p>Give us a holler at +880-1234567890</p>
           </div>
           <div className="ticket_button d-flex flex-column align-items-center justify-content-center w-50">
-  <button className="ticket-button">Get your Tickets now</button>
+  {/* <button className="ticket-button">Get your Tickets now</button> */}
   <div className="copyright mt-3 text-center">
     Made with <span style={{ color: 'red' }}>❤️</span> by{' '}
     <a href="https://wintelbd.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007BFF' }}>

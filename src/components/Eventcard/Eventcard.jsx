@@ -61,7 +61,7 @@ const Eventcard = () => {
                     <strong>Location:</strong> {closestEvent.location}
                   </p>
                 </div>
-                <button className="ticket-button">Get your Tickets now</button>
+                {/* <button className="ticket-button">Get your Tickets now</button> */}
               </div>
             </div>
           ) : (

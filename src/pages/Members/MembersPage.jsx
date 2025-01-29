@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import ReactPlayer from 'react-player';
 import axios from 'axios';
 import { Pagination } from 'react-bootstrap';
 import './Members.css'; // Import custom CSS for styling
@@ -39,33 +38,27 @@ const MembersPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid bg-dark" style={{ marginTop: "-24px" }}>
+      <div className="container-fluid " style={{ marginTop: "-24px", minHeight: "100vh" }}>
         <div className="container">
           <h1 className="text-light text-center my-4">Members Page</h1>
-          <div className="container-fluid" style={{ background: "#242424" }}>
+          <div className="container-fluid">
             <div className="container my-4">
               <h1 className="text-light fs-3">Lyricists of Bangladesh</h1>
-              <div className="row g-4">
+              <div className="row g-4 mt-5">
                 {lyricists.map((lyricist) => (
-                  <div className="col-md-4" key={lyricist.id} >
-                    <div className="card text-start lyricist-card" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
-                      <img
-                        src={lyricist.file_path ? `${IMAGE_BASE_URL}${lyricist.file_path}` : DEFAULT_IMAGE}
-                        alt={lyricist.name}
-                        className="card-img-top"
-                        style={{ height: '150px', objectFit: 'cover' }}
-                      />
-                      <div className="card-body text-start">
-                        <h5 className="card-title" style={{ fontSize: '1.25rem' }}>{lyricist.name}</h5>
-                        <p className="card-text" style={{ fontSize: '0.875rem' }}>{lyricist.bio}</p>
-                        {lyricist.youtube_url && (
-                          <ReactPlayer
-                            url={lyricist.youtube_url}
-                            width="100%"
-                            height="150px"
-                            controls
-                          />
-                        )}
+                  <div className="col-12 mb-4" key={lyricist.id}>
+                    <div className="cards lyricist-card d-flex flex-row p-3" style={{ backgroundColor: "rgba(165, 239, 255, 0.2)" }}>
+                      <div className="col-md-4">
+                        <img
+                          src={lyricist.file_path ? `${IMAGE_BASE_URL}${lyricist.file_path}` : DEFAULT_IMAGE}
+                          alt={lyricist.name}
+                          className="img-fluid lyricist-image"
+                        />
+                      </div>
+                      <div className="col-md-8 card-body text-start text-light ">
+                        <h2 className="card-title">{lyricist.name}</h2>
+                        <h5 style={{color:"rgba(255, 149, 0, 1)"}}> Position: {lyricist.position} </h5>
+                        <h2 className="card-text text-start fw-normal">{lyricist.bio}</h2>
                       </div>
                     </div>
                   </div>
