@@ -71,9 +71,78 @@ const Cart = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const payload = {
+  //     name: userInfo.name,
+  //     email: userInfo.email,
+  //     phone: userInfo.phone,
+  //     shipping_address: userInfo.shippingAddress,
+  //     payment_method_id: parseInt(userInfo.paymentMethod),
+  //     order_detail: cart.map(item => ({
+  //       product_id: item.id,
+  //       price: parseFloat(item.price),
+  //       qty: item.quantity || 1,
+  //       total: item.price * (item.quantity || 1)
+  //     })),
+  //     sub_total: calculateSubtotal(),
+  //     delivery_charge: calculateDeliveryCharge(),
+  //     total: calculateTotal()
+  //   };
+
+  //   try {
+  //     const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/order-placement', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(payload)
+  //     });
+
+  //     const data = await response.json();
+  //     if (data.status === 'success') {
+  //       console.log('Order placed successfully:', data);
+  //       // Clear the cart and user info
+  //       setCart([]);
+  //       setUserInfo({
+  //         name: '',
+  //         phone: '',
+  //         email: '',
+  //         shippingAddress: '',
+  //         paymentMethod: ''
+  //       });
+  //       localStorage.removeItem('cart');
+       
+  //       setShowSuccessMessage(true);
+       
+  //       setTimeout(() => {
+  //         setShowSuccessMessage(false);
+      
+  //         window.location.href = '/';
+  //       }, 3000);
+  //     } else {
+  //       console.error('Error placing order:', data);
+       
+  //       setShowErrorMessage(true);
+      
+  //       setTimeout(() => {
+  //         setShowErrorMessage(false);
+  //       }, 3000);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error placing order:', error);
+  //     // Show error message
+  //     setShowErrorMessage(true);
+  //     // Hide error message after 2-3 seconds
+  //     setTimeout(() => {
+  //       setShowErrorMessage(false);
+  //     }, 3000);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const payload = {
       name: userInfo.name,
       email: userInfo.email,
@@ -90,7 +159,7 @@ const Cart = () => {
       delivery_charge: calculateDeliveryCharge(),
       total: calculateTotal()
     };
-
+  
     try {
       const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/order-placement', {
         method: 'POST',
@@ -99,7 +168,7 @@ const Cart = () => {
         },
         body: JSON.stringify(payload)
       });
-
+  
       const data = await response.json();
       if (data.status === 'success') {
         console.log('Order placed successfully:', data);
@@ -140,7 +209,6 @@ const Cart = () => {
       }, 3000);
     }
   };
-
   const handleRemove = (index) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
@@ -167,7 +235,7 @@ const Cart = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-8" style={{ minHeight: "100vh" }}>
-            <h1 className="text-center my-4 text-light">Shopping Cart</h1>
+            <h1 className="text-start my-4 text-light"><span className="typograph-text">Shopping Cart</span></h1>
             {showSuccessMessage && (
               <Alert variant="success" onClose={() => setShowSuccessMessage(false)} dismissible>
                 Order placed successfully!

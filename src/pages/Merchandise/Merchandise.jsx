@@ -30,7 +30,7 @@ const Merchandise = () => {
       <Navbar cart={cart} />
       <div className="container-fluid bg-dark" style={{ minHeight: "100vh"}}>
         <div className="container">
-          <h1 className='text-light text-center'>Merchandise Page</h1>
+          <h1 className='text-light text-start'><span className="typograph-text">All Valuable Books</span></h1>
           <div className="book-list mt-5 text-start">
             {books.map(book => (
               <div key={book.id} className="book-card d-flex flex-row p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>

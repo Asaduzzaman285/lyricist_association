@@ -15,7 +15,7 @@ const Navbar = ({ cart }) => {
         {/* <span>গীতিকবিসংঘ</span> */}
       </div>
       <ul className="navbar-links ">
-        <li><Link to="/">Homepage</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/members">Members</Link></li>
         <li><Link to="/success-stories">Success Stories</Link></li>
         <li><Link to="/events">Events</Link></li>

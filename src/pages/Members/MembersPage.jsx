@@ -40,11 +40,10 @@ const MembersPage = () => {
       <Navbar />
       <div className="container-fluid " style={{ marginTop: "-24px", minHeight: "100vh" }}>
         <div className="container">
-          <h1 className="text-light text-center my-4">Members Page</h1>
           <div className="container-fluid">
             <div className="container my-4">
-              <h1 className="text-light fs-3">Lyricists of Bangladesh</h1>
-              <div className="row g-4 mt-5">
+              <h1 className="text-light fs-3">  <span className="typograph-text">Lyricists of Bangladesh</span></h1>
+              <div className="row g-4 mt-2">
                 {lyricists.map((lyricist) => (
                   <div className="col-12 mb-4" key={lyricist.id}>
                     <div className="cards lyricist-card d-flex flex-row p-3" style={{ backgroundColor: "rgba(165, 239, 255, 0.2)" }}>

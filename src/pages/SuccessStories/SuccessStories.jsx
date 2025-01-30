@@ -57,7 +57,7 @@ const SuccessStoriesPage = () => {
       <Navbar />
       <div className="container-fluid bg-dark" style={{ minHeight: "100vh" }}>
         <div className="container" style={{ padding: '20px', borderRadius: '8px' }}>
-          <h1 className="text-center text-light mb-4">Success Stories</h1>
+          <h1 className="text-start text-light mb-4"><span className="typograph-text">Success Stories </span></h1>
           <div className="row">
             {stories.map((story) => (
               <div className="col-12 mb-4" key={story.id}>

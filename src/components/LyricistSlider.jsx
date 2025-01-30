@@ -36,11 +36,11 @@ const LyricistSlider = () => {
     >
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-md-12 mt-5 ">
+          <div className="col-md-12 mt-3 ">
             {ads.length > 0 && <AdSpace imageUrl={`${baseUrl}/${ads[0].file_path}`} />}
           </div>
           <div className="col-md-6">
-            <h2 className="text-light fs-3 text-start my-4 p-5 mb-5">Lyricists of Bangladesh</h2>
+            <h2 className="text-light fs-3 text-start my-4 p-2"> <span className="typograph-text">Lyricists of Bangladesh</span></h2>
           </div>
         </div>
         <div className="container" style={{ marginTop: "-20px" }}>

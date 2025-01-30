@@ -81,7 +81,7 @@ const Events = () => {
       <Navbar />
       <div className="container-fluid bg-dark" style={{ marginTop: "-24px", minHeight: "100vh" }}>
         <div className="container mt-4">
-          <h1 className="text-light">Upcoming Events</h1>
+          <h1 className="text-light"><span className="typograph-text">Upcoming Events</span></h1>
           <div className="row mt-5">
             {events.map((event) => (
               <div className="col-12 mb-4" key={event.id}>

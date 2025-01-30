@@ -38,7 +38,7 @@ const Eventcard = () => {
     >
       <div className="container">
         <div className="event-container">
-          <h2 className="event-title text-start mt-5">Events</h2>
+          <h2 className="event-title text-start mt-2"><span className="typograph-text">Events</span></h2>
           {closestEvent ? (
             <div className="event-card">
               <div className="card-image w-50">
