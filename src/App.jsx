@@ -10,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const Spinner = () => (
   <div className="spinner-container d-flex justify-content-center align-items-center bg-dark" style={{ height: '100vh', width: '100vw' }}>
     <i className="fa-solid fa-spinner fa-spin fa-4x text-primary"></i>
@@ -27,24 +26,12 @@ const HomePage = () => (
   </>
 );
 
+const MembersPage = React.lazy(() => import("./pages/Members/MembersPage"));
+const SuccessStoriesPage = React.lazy(() => import("./pages/SuccessStories/SuccessStories"));
+const EventsPage = React.lazy(() => import("./pages/Events/Events"));
+const MerchandisePage = React.lazy(() => import("./pages/Merchandise/Merchandise"));
+const Cart = React.lazy(() => import("./pages/Cart/Cart"));
 
-const MembersPage = React.lazy(() =>
-  import("./pages/Members/MembersPage")
-);
-const SuccessStoriesPage = React.lazy(() =>
-  import("./pages/SuccessStories/SuccessStories")
-);
-
-const EventsPage = React.lazy(() =>
-  import("./pages/Events/Events")
-);
-
-const MerchandisePage = React.lazy(() =>
-  import("./pages/Merchandise/Merchandise")
-);
-const Cart = React.lazy(() =>
-  import("./pages/Cart/Cart")
-);
 const PodcastPage = () => (
   <>
     <Navbar />
@@ -62,14 +49,6 @@ const ECCommitteePage = () => (
     </div>
   </>
 );
-// const Cart = () => (
-//   <>
-//     <Navbar />
-//     <div className="container">
-//       <h1>Cart Page</h1>
-//     </div>
-//   </>
-// );
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -77,7 +56,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Simulates a 2-second loading time
+    }, 1000); // Simulates a 1-second loading time
 
     return () => clearTimeout(timer);
   }, []);
@@ -88,30 +67,18 @@ const App = () => {
         <Spinner />
       ) : (
         <Router>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/members" element={<MembersPage />} />
-            <Route
-              path="/success-stories"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <SuccessStoriesPage />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/events"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <EventsPage />
-                </Suspense>
-              }
-            />
-            <Route path="/merchandise" element={<MerchandisePage />} />
-            <Route path="/podcast" element={<PodcastPage />} />
-            <Route path="/ec-committee" element={<ECCommitteePage />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/members" element={<MembersPage />} />
+              <Route path="/success-stories" element={<SuccessStoriesPage />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/merchandise" element={<MerchandisePage />} />
+              <Route path="/podcast" element={<PodcastPage />} />
+              <Route path="/ec-committee" element={<ECCommitteePage />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </Suspense>
         </Router>
       )}
     </>
