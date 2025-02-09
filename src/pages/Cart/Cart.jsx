@@ -235,7 +235,7 @@ const Cart = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-8" style={{ minHeight: "100vh" }}>
-            <h1 className="text-start my-4 text-light"><span className="typograph-text">Shopping Cart</span></h1>
+            <h1 className="text-start my-4 text-light"><span className="typograph-text fs-2">Shopping Cart</span></h1>
             {showSuccessMessage && (
               <Alert variant="success" onClose={() => setShowSuccessMessage(false)} dismissible>
                 Order placed successfully!
@@ -256,13 +256,14 @@ const Cart = () => {
                       src={`https://lyricistadminapi.wineds.com${book.file_path}`} 
                       alt={book.name} 
                       className="cart-image"
+                      style={{ width: '100px' }}
                     />
                   </div>
                   
                   {/* Details Section */}
-                  <div className="details-section text-start text-light">
-                    <h2 className="card-title">{book.name}</h2>
-                    <h5>By {book.member?.name}</h5>
+                  <div className="details-section text-start text-light fs-3">
+                    <h2 className="card-title ">{book.name}</h2>
+                    <h5 >By {book.member?.name}</h5>
                     <p className="card-text mt-3 text-start text-danger">{book.price} BDT Only</p>
                   </div>
                   
