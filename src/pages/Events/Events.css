@@ -13,7 +13,16 @@
   transform: translateY(-8px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
+.ticket-button {
+  background-color: #c30505;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
 .event-image {
   width: 30%;
   height: 30%;

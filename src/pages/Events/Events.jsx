@@ -101,7 +101,12 @@ const Events = () => {
                       By {event.artist}
                     </h6>
                     <p className="card-text text-start fw-normal">{event.description}</p>
-                    <button type="button" className="btn btn-light text-start w-25" onClick={() => handleShowModal(event)}>Get Tickets</button>
+                    <button  
+                     type="button" 
+                      className="btn d-flex align-items-center justify-content-center ticket-button text-light text-start w-25"
+                       onClick={() => handleShowModal(event)
+                        
+                       }>Get Tickets</button>
                   </div>
                 </div>
               </div>

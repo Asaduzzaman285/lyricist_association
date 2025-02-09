@@ -76,7 +76,30 @@ const SuccessStoriesPage = () => {
                       By {story.member_name} {/* Display the member name here */}
                     </h6>
                     <p className="card-text text-start fw-normal">{story.details}</p>
-                    <button type="button" className="btn btn-light text-start w-25" onClick={() => handleShowModal(story)}>Read More</button>
+                    <button 
+  type="button"
+  className="btn text-white"
+  onClick={() => handleShowModal(story)}
+  style={{
+    width: "176px",
+    height: "35px",
+    padding: "10px",
+    backgroundColor: "#c30505",
+    border: "none",
+   
+    fontSize: "18px",
+    fontWeight: "600",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "background-color 0.3s ease"
+  }}
+ 
+>
+  Read More
+</button>
+
                   </div>
                 </div>
               </div>

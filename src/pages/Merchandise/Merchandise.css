@@ -34,8 +34,8 @@
 
 /* Image Styles */
 .book-image {
-  width: 50%; /* 50% width */
-  height: 280px; /* Maintain aspect ratio */
+  width: 300px; 
+  height: auto;
   object-fit: cover;
   border-radius: 10px 0 0 10px;
   margin-right: 20px;

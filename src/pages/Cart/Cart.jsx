@@ -391,15 +391,7 @@ const Cart = () => {
                   <span>Total</span>
                   <span>{calculateTotal()} TK.</span>
                 </div>
-                <Button 
-                  variant="primary" 
-                  className="w-100 mt-4"
-                  type="submit"
-                  onClick={handleSubmit}
-                  disabled={cart.length === 0}
-                >
-                  Place Order
-                </Button>
+              
               </div>
             </div>
           )}

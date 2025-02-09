@@ -51,6 +51,8 @@ const LyricistSlider = () => {
                   image={`${baseUrl}${member.file_path}`}
                   name={member.name}
                   bio={member.bio}
+                  position={member.position}
+                  status={member.status}
                   additionalImage="assets/images/singnature-style.png"
                   videoUrl={member.youtube_url}
                 />

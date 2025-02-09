@@ -11,6 +11,7 @@
   color: #fff; /* White text for contrast */
 }
 
+
 /* Logo Styling */
 .navbar-logo .logo {
   width: 216px;
@@ -24,7 +25,6 @@
   display: flex; /* Display links horizontally */
   gap: 25px; /* Add spacing between links */
   margin: 0;
-  
   padding: 0;
   margin-right: 4%;
 }
@@ -42,6 +42,23 @@
 
 .navbar-links a:hover {
   color: #007bff; /* Blue color on hover for interactivity */
+}
+
+/* Active Link Styling */
+.navbar-links .active a {
+  color: #007bff; /* Change this to your desired active link color */
+  font-weight: bold; /* Optional: Make the active link bold */
+}
+
+/* Badge Styling */
+.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
 }
 
 /* Responsive Design */

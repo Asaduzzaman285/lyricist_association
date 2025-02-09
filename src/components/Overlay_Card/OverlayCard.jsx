@@ -21,7 +21,7 @@ const OverlayCard = () => {
     formData.append("file", file);
 
     const fileName = file.name.split('.')[0];
-    const filePath = `uploads/modules/members/`; // No leading slash
+    const filePath = `uploads/modules/members/`;
 
     try {
       const token = localStorage.getItem("authToken");
@@ -44,10 +44,12 @@ const OverlayCard = () => {
       if (result.status === "success") {
         const correctedFilePath = `${filePath}${result.data.file_path.split('/').pop()}`;
         setFormData({ ...formData, image: correctedFilePath });
-      } else {
+      }
+       else {
         console.error("File upload failed:", result.message);
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error uploading file:", error);
     }
   };
@@ -64,7 +66,6 @@ const OverlayCard = () => {
       return;
     }
 
-    // Ensure the file path is correctly formatted
     const correctedFilePath = formData.image ? `/${formData.image.replace(/\\/g, '')}` : null;
 
     const memberData = {
@@ -72,8 +73,8 @@ const OverlayCard = () => {
       bio: formData.bio,
       youtube_url: formData.videoUrl,
       file_path: correctedFilePath,
-      member_status_id: "1", // Default status as "Processing"
-      position: "Member", // Default position as "Member"
+      member_status_id: "1", 
+      position: "Member",
     };
 
     try {
