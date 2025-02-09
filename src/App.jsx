@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 import Navbar from "./components/Navbar/Navbar";
 import Slider from "./components/Slider/Slider";
-// import LyricistCard from "./components/Card/LyricistCard";
 import OverlayCard from "./components/Overlay_Card/OverlayCard";
 import Eventcard from "./components/Eventcard/Eventcard";
 import LyricistSlider from "./components/LyricistSlider";
@@ -16,15 +16,37 @@ const Spinner = () => (
   </div>
 );
 
-const HomePage = () => (
-  <>
-    <Navbar />
-    <Slider />
-    <LyricistSlider />
-    <OverlayCard />
-    <Eventcard />
-  </>
-);
+const HomePage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    if (queryParams.get('order') === 'success') {
+      Swal.fire({
+        title: 'Order placed successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        queryParams.delete('order');
+        navigate({
+          pathname: location.pathname,
+          search: queryParams.toString()
+        });
+      });
+    }
+  }, [location, navigate]);
+
+  return (
+    <>
+      <Navbar />
+      <Slider />
+      <LyricistSlider />
+      <OverlayCard />
+      <Eventcard />
+    </>
+  );
+};
 
 const MembersPage = React.lazy(() => import("./pages/Members/MembersPage"));
 const SuccessStoriesPage = React.lazy(() => import("./pages/SuccessStories/SuccessStories"));

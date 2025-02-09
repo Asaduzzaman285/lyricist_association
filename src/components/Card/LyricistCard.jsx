@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.css';
 
-// Function to extract a valid YouTube embed URL
 const getEmbedUrl = (url) => {
   const match = url.match(/(?:youtube\.com\/(?:.*[?&]v=|embed\/)|youtu\.be\/)([\w-]+)/);
   return match ? `https://www.youtube.com/embed/${match[1]}` : '';
 };
 
-// Function to truncate text without cutting words
 const truncateText = (text, length) => {
   if (text.length <= length) return text;
   const truncated = text.substr(0, text.lastIndexOf(' ', length));
@@ -18,6 +16,11 @@ const truncateText = (text, length) => {
 
 const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, status }) => {
   const [showModal, setShowModal] = useState(false);
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey(prevKey => prevKey + 1);
+  }, [videoUrl]);
 
   const shortBio = truncateText(bio, 50);
   const showEllipsis = bio.length > 50;
@@ -26,7 +29,7 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
     <Container fluid style={{ background: '#242424', color: 'white', marginBottom: '45px' }}>
       <Card className="w-100 my-3 card">
         <Card.Img variant="top" src={image} alt="Lyricist Image" loading="lazy" />
-        <Card.Body style={{ background: '#D9D9D9', textAlign: 'center' }}>
+        <Card.Body style={{ background: '#D9D9D9', textAlign: 'center',width: '100%' }}>
           <Card.Title style={{ textAlign: 'start' }}>{name}</Card.Title>
           <Card.Text
             className='text-dark'
@@ -59,6 +62,7 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
           </div>
           <div className="ratio ratio-16x9 mt-2">
             <iframe
+              key={key}
               src={getEmbedUrl(videoUrl)}
               allowFullScreen
               title={name}
@@ -68,7 +72,6 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
         </Card.Body>
       </Card>
 
-      {/* Modal for full bio */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
@@ -80,6 +83,8 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
           <p>{bio}</p>
           <div className="ratio ratio-16x9 mt-2">
             <iframe
+          
+              key={key}
               src={getEmbedUrl(videoUrl)}
               allowFullScreen
               title={name}
