@@ -69,7 +69,7 @@ const Merchandise = () => {
                 />
                 <div className="card-body text-start text-light">
                   <h2 className="card-title">{book.name}</h2>
-                  <h5>By {book.member.name}</h5>
+                  <h5>By <span  style={{ color: "rgba(255, 149, 0, 1)" }}>{book.member.name}</span></h5>
                   <p>{book.description}</p>
                   <p className="card-text text-start">{book.price} BDT Only</p>
 

@@ -72,8 +72,8 @@ const SuccessStoriesPage = () => {
                   <div className="card-body w-50 text-start text-light">
                     <h2 className="card-title">{story.headline}</h2>
                     <h5> Posted on: {story.posting_time}</h5>
-                    <h6 className="card-subtitle mb-2 text-highlight">
-                      By {story.member_name} {/* Display the member name here */}
+                    <h6 className="card-subtitle mb-2 text-highlight" >
+                      By  <span style={{ color: "rgba(255, 149, 0, 1)" }}>{story.member_name}</span> 
                     </h6>
                     <p className="card-text text-start fw-normal">{story.details}</p>
                     <button 

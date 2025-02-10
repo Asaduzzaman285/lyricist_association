@@ -159,7 +159,9 @@ const Cart = () => {
         <div className="row">
           <div className="col-md-8" style={{ minHeight: "100vh" }}>
             <h1 className="text-start my-4 text-light"><span className="typograph-text fs-2">Shopping Cart</span></h1>
+          
             {cart.length === 0 ? (
+              
               <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
                 <button 
                   className="btn  px-4 py-3"
@@ -180,22 +182,25 @@ const Cart = () => {
                 </button>
               </div>
             ) : (
+              
               <div className="cart-list">
+                   <h4  style={{ color: "rgba(255, 149, 0, 1)" }}>Order Items</h4>
                 {cart.map((book, index) => (
                   <div key={index} className="cart-item d-flex">
+                   
                     <div className="image-section position-relative">
                       {book.isOnSale && <div className="super-deal-badge text-light">Super Deal</div>}
                       <img 
                         src={`https://lyricistadminapi.wineds.com${book.file_path}`} 
                         alt={book.name} 
                         className="cart-image"
-                        style={{ width: '100px' }}
+                        style={{ width: '100px', maxHeight: '70px' }}
                       />
                     </div>
                     <div className="details-section text-start text-light fs-3">
-                      <h2 className="card-title ">{book.name}</h2>
-                      <h5>By {book.member?.name}</h5>
-                      <p className="card-text mt-3 text-start text-danger">{book.price} BDT Only</p>
+                      <h2 className="card-title fs-5 ">{book.name}</h2>
+                      <h6 style={{fontSize:"13px"}}>By <span style={{ color: "rgba(255, 149, 0, 1)" }} >{book.member?.name}</span></h6>
+                      <p className="card-text mt-1  text-start text-danger" style={{fontSize:"13px"}}>{book.price} BDT Only</p>
                     </div>
                     <div className="actions-section d-flex flex-column justify-content-between">
                       <Button 
@@ -226,8 +231,8 @@ const Cart = () => {
               </div>
             )}
             {cart.length > 0 && (
-              <Form onSubmit={handleSubmit} className="user-info-form mt-4 p-4">
-                <h3 className="mb-4">Shipping Information</h3>
+              <Form onSubmit={handleSubmit} className="user-info-form mt-2 p-4">
+                <h3 className="mb-4" style={{ color: "rgba(255, 149, 0, 1)" }}>Shipping Information</h3>
                 <div className="row">
                   <div className="col-md-6">
                     <Form.Group className="mb-3">
@@ -293,7 +298,8 @@ const Cart = () => {
               </Form.Group>
               <Button 
                 variant="primary" 
-                className="w-100 mt-4"
+                className="w-100 mt-4 text-dark"
+                style={{ backgroundColor: "red" }}
                 type="submit"
                 disabled={cart.length === 0}
               >

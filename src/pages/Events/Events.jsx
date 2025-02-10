@@ -98,15 +98,15 @@ const Events = () => {
                     <h5> Date: {event.date} </h5>
                     <h5> Location: {event.location}</h5>
                     <h6 className="card-subtitle mb-2 text-highlight">
-                      By {event.artist}
+                      By <span style={{ color: "rgba(255, 149, 0, 1)" }}>{event.artist}</span>
                     </h6>
                     <p className="card-text text-start fw-normal">{event.description}</p>
-                    <button  
+                    {/* <button  
                      type="button" 
                       className="btn d-flex align-items-center justify-content-center ticket-button text-light text-start w-25"
                        onClick={() => handleShowModal(event)
                         
-                       }>Get Tickets</button>
+                       }>Get Tickets</button> */}
                   </div>
                 </div>
               </div>
