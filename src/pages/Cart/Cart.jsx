@@ -112,7 +112,7 @@ const Cart = () => {
           paymentMethod: ''
         });
         localStorage.removeItem('cart');
-        navigate('/?order=success');
+        navigate('/tracker?order=success&order_id=' + data.data.order_number);
       } else {
         console.error('Error placing order:', data);
         Swal.fire({

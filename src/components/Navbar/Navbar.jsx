@@ -38,12 +38,15 @@ const Navbar = ({ cart }) => {
           <Link to="/cart">
             <i className="fa-solid fa-cart-shopping"></i>
             <span
-  style={{ fontSize: "12px", marginRight: "38px", marginTop: "12px" }}
+  style={{ fontSize: "12px", marginRight: "90px", marginTop: "16px" }}
   className="badge bg-danger"
 >
   {cartItemCount > 0 ? cartItemCount : ""}
 </span>
           </Link>
+        </li>
+        <li className={location.pathname === '/tracker' ? 'active' : ''}>
+          <Link to="/tracker"><i class="fas fa-shipping-fast"></i></Link>
         </li>
       </ul>
     </nav>

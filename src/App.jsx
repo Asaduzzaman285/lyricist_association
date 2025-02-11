@@ -53,7 +53,7 @@ const SuccessStoriesPage = React.lazy(() => import("./pages/SuccessStories/Succe
 const EventsPage = React.lazy(() => import("./pages/Events/Events"));
 const MerchandisePage = React.lazy(() => import("./pages/Merchandise/Merchandise"));
 const Cart = React.lazy(() => import("./pages/Cart/Cart"));
-
+const Tracker = React.lazy(() => import("./pages/Tracker/Tracker"));
 const PodcastPage = () => (
   <>
     <Navbar />
@@ -99,6 +99,8 @@ const App = () => {
               <Route path="/podcast" element={<PodcastPage />} />
               <Route path="/ec-committee" element={<ECCommitteePage />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/tracker" element={<Tracker />} />
+
             </Routes>
           </Suspense>
         </Router>
