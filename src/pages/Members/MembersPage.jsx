@@ -38,23 +38,23 @@ const MembersPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid" style={{ marginTop: "-24px", minHeight: "100vh" }}>
+      <div className="container-fluid" style={{ marginTop: "-27px", minHeight: "100vh" }}>
         <div className="container">
           <div className="container-fluid">
-            <div className="container my-4">
-              <h1 className="text-light fs-3"><span className="typograph-text">Lyricists of Bangladesh</span></h1>
+            <div className="container mt-4">
+              <h1 className="text-light fs-3"><span className="typograph-text ">Lyricists of Bangladesh</span></h1>
               <div className="row g-4 mt-2">
                 {lyricists.map((lyricist) => (
                   <div className="col-12 mb-4" key={lyricist.id}>
-                    <div className="cards lyricist-card d-flex flex-row p-3">
-                      <div className="col-md-4 d-flex align-items-center">
+                    <div className="cards lyricist-card d-flex flex-lg-row flex-column p-3">
+                      <div className="col-lg-4 col-12 d-flex align-items-center">
                         <img
                           src={lyricist.file_path ? `${IMAGE_BASE_URL}${lyricist.file_path}` : DEFAULT_IMAGE}
                           alt={lyricist.name}
                           className="img-fluid lyricist-image"
                         />
                       </div>
-                      <div className="col-md-8 card-body text-start text-light">
+                      <div className="col-lg-8 col-12 card-body text-start text-light">
                         <h2 className="card-title">{lyricist.name}</h2>
                         <h5 className="card-subtitle" style={{ color: "rgba(255, 149, 0, 1)" }}>Position: {lyricist.position}</h5>
                         <h2 className="card-text text-start fw-bold">{lyricist.bio}</h2>

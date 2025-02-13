@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import { Form, Button, Table, ProgressBar } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './Tracker.css';
 
 const Tracker = () => {
   const [orderNumber, setOrderNumber] = useState('');
@@ -123,12 +124,11 @@ const Tracker = () => {
             </div>
 
             {/* Order Details Tables */}
-            <div className="grid gap-6">
+            <div className="order-details">
               <Table bordered hover className="table-sm table-hover">
                 <thead>
                   <tr>
                     <th>Customer Info</th>
-                    <th>Order Items</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -141,6 +141,17 @@ const Tracker = () => {
                       <div>Payment Method: <strong>{orderDetails.payment_method.payment_method}</strong></div>
                       <div>Payment Status: <strong>{orderDetails.payment_status?.status || 'Pending'}</strong></div>
                     </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Table bordered hover className="table-sm table-hover mt-4">
+                <thead>
+                  <tr>
+                    <th>Order Items</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
                     <td>
                       <Table bordered hover className="table-sm table-hover">
                         <thead>

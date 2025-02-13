@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Typography Text Styling */
+.typograph-text-responsive {
+  font-family: 'Licorice', serif;
+  font-weight: 400;
+  font-size: 70px; /* Default font size for large screens */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 1200px) {
+  .typograph-text-responsive {
+    font-size: 60px; /* Adjust font size for large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .typograph-text-responsive {
+    font-size: 50px; /* Adjust font size for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .typograph-text-responsive {
+    font-size: 40px; /* Adjust font size for small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .typograph-text-responsive {
+    font-size: 30px; /* Adjust font size for extra small screens */
+  }
+}

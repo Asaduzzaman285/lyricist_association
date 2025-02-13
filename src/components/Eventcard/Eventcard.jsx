@@ -40,14 +40,14 @@ const Eventcard = () => {
         <div className="event-container">
           <h2 className="event-title text-start mt-2"><span className="typograph-text">Events</span></h2>
           {closestEvent ? (
-            <div className="event-card">
-              <div className="card-image w-50">
+            <div className="event-card row">
+              <div className="card-image col-md-6 col-12">
                 <img
                   src={`https://lyricistadminapi.wineds.com${closestEvent.file_path}`}
                   alt={closestEvent.title}
                 />
               </div>
-              <div className="card-contents w-50 text-light">
+              <div className="card-contents col-md-6 col-12 text-light">
                 <h2 className="artist-name">
                   <span className="typograph-text">{closestEvent.artist}</span>{" "}
                   Rhythm Odyssey

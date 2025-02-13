@@ -157,7 +157,7 @@ const Cart = () => {
       <Navbar cart={cart} />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-8" style={{ minHeight: "100vh" }}>
+          <div className="col-md-8 ms-2" style={{ minHeight: "100vh" }}>
             <h1 className="text-start my-4 text-light"><span className="typograph-text fs-2">Shopping Cart</span></h1>
           
             {cart.length === 0 ? (
@@ -309,7 +309,7 @@ const Cart = () => {
           )}
         </div>
         {cart.length > 0 && (
-          <div className="col-md-4">
+          <div className="col-md-3">
             <div className="checkout-summary mt-4">
               <h2>Order Summary</h2>
               <div className="summary-item">

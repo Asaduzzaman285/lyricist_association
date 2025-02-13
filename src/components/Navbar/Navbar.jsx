@@ -2,53 +2,55 @@ import React, { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/images/lyricist-logo.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = ({ cart }) => {
   const location = useLocation();
-  
 
   const cartItemCount = useMemo(() => {
     return cart ? cart.length : 0;
   }, [cart]);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
           <img src={logo} alt="Logo" className="logo" />
         </Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/members' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/members">Members</Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/success-stories' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/success-stories">Success Stories</Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/events' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/events">Events</Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/merchandise' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/merchandise">Merchandise</Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/cart' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/cart">
+                <i className="fa-solid fa-cart-shopping"></i>
+                <span className="badge bg-danger ">
+                  {cartItemCount > 0 ? cartItemCount : ""}
+                </span>
+              </Link>
+            </li>
+            <li className={`nav-item ${location.pathname === '/tracker' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/tracker"><i className="fas fa-shipping-fast"></i></Link>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul className="navbar-links">
-        <li className={location.pathname === '/' ? 'active' : ''}>
-          <Link to="/">Home</Link>
-        </li>
-        <li className={location.pathname === '/members' ? 'active' : ''}>
-          <Link to="/members">Members</Link>
-        </li>
-        <li className={location.pathname === '/success-stories' ? 'active' : ''}>
-          <Link to="/success-stories">Success Stories</Link>
-        </li>
-        <li className={location.pathname === '/events' ? 'active' : ''}>
-          <Link to="/events">Events</Link>
-        </li>
-        <li className={location.pathname === '/merchandise' ? 'active' : ''}>
-          <Link to="/merchandise">Merchandise</Link>
-        </li>
-        <li className={location.pathname === '/cart' ? 'active' : ''}>
-          <Link to="/cart">
-            <i className="fa-solid fa-cart-shopping"></i>
-            <span
-  style={{ fontSize: "12px", marginRight: "90px", marginTop: "16px" }}
-  className="badge bg-danger"
->
-  {cartItemCount > 0 ? cartItemCount : ""}
-</span>
-          </Link>
-        </li>
-        <li className={location.pathname === '/tracker' ? 'active' : ''}>
-          <Link to="/tracker"><i class="fas fa-shipping-fast"></i></Link>
-        </li>
-      </ul>
     </nav>
   );
 };

@@ -82,18 +82,18 @@ const Events = () => {
       <div className="container-fluid bg-dark" style={{ marginTop: "-24px", minHeight: "100vh" }}>
         <div className="container mt-4">
           <h1 className="text-light"><span className="typograph-text">Upcoming Events</span></h1>
-          <div className="row mt-5">
+          <div className="row mt-5 mt-sm-1">
             {events.map((event) => (
               <div className="col-12 mb-4" key={event.id}>
-                <div className="cards event-card d-flex flex-row p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
+                <div className="cards event-card d-flex flex-lg-row flex-column p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
                   {event.image && (
                     <img
                       src={event.image}
                       alt={event.title}
-                      className="img-fluid event-image "
+                      className="img-fluid event-image col-lg-4 col-12"
                     />
                   )}
-                  <div className="card-body w-50 text-start text-light">
+                  <div className="card-body col-lg-8 col-12 text-start text-light">
                     <h2 className="card-title">{event.title}</h2>
                     <h5> Date: {event.date} </h5>
                     <h5> Location: {event.location}</h5>
@@ -114,23 +114,25 @@ const Events = () => {
           </div>
 
           {/* Pagination */}
-          <nav>
-            <ul className="pagination justify-content-center">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <li
-                  key={i}
-                  className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
-                >
-                  <button
-                    className="page-link"
-                    onClick={() => paginate(i + 1)}
+          {totalPages > 1 && (
+            <nav>
+              <ul className="pagination justify-content-center">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <li
+                    key={i}
+                    className={`page-item ${currentPage === i + 1 ? "active" : ""}`}
                   >
-                    {i + 1}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
+                    <button
+                      className="page-link"
+                      onClick={() => paginate(i + 1)}
+                    >
+                      {i + 1}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
           {/* Modal */}
           <Modal show={showModal} onHide={handleCloseModal} dialogClassName="custom-modal-width">

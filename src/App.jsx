@@ -7,6 +7,7 @@ import OverlayCard from "./components/Overlay_Card/OverlayCard";
 import Eventcard from "./components/Eventcard/Eventcard";
 import LyricistSlider from "./components/LyricistSlider";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 

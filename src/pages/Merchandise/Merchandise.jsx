@@ -31,14 +31,13 @@ const Merchandise = () => {
       const updatedCart = [...cart, book];
       setCart(updatedCart);
   
-      // ✅ SweetAlert2 with Custom Position (Right Side of h1)
       Swal.fire({
         text: `${book.name} has been added to your cart!`,
         icon: "success",
         showConfirmButton: false,
-        timer: 2000, // ✅ Auto close after 1s
-        position: "top-end", // ✅ Right side
-        toast: true, // ✅ Compact style
+        timer: 2000,
+        position: "top-end",
+        toast: true,
         customClass: {
           popup: "custom-swal",
         },
@@ -59,30 +58,29 @@ const Merchandise = () => {
             {books.map((book) => (
               <div
                 key={book.id}
-                className="book-card d-flex flex-row p-3"
+                className="book-card d-flex flex-lg-row flex-column p-3"
                 style={{ backgroundColor: "rgba(165, 239, 255, 0.2)" }}
               >
                 <img
                   src={`https://lyricistadminapi.wineds.com${book.file_path}`}
                   alt={book.name}
-                  className="img-fluid book-image"
+                  className="img-fluid book-image col-lg-4 col-12"
                 />
-                <div className="card-body text-start text-light">
+                <div className="card-body col-lg-8 col-12 text-start text-light">
                   <h2 className="card-title">{book.name}</h2>
-                  <h5>By <span  style={{ color: "rgba(255, 149, 0, 1)" }}>{book.member.name}</span></h5>
+                  <h5>By <span style={{ color: "rgba(255, 149, 0, 1)" }}>{book.member.name}</span></h5>
                   <p>{book.description}</p>
                   <p className="card-text text-start">{book.price} BDT Only</p>
 
-                  {/* ✅ Button with Single Color */}
                   <button
-                    className="btn text-light d-flex align-items-center justify-content-center"
+                    className="btn text-light d-flex align-items-center justify-content-center "
                     onClick={() => handleAddToCart(book)}
                     disabled={cart.some((item) => item.id === book.id)}
                     style={{
                       width: "176px",
                       height: "39px",
                       padding: "10px",
-                      backgroundColor: "#c30505", // ✅ Single Color
+                      backgroundColor: "#c30505",
                       border: "none",
                       borderRadius: "10px",
                       fontSize: "15px",
@@ -92,7 +90,6 @@ const Merchandise = () => {
                   >
                     {cart.some((item) => item.id === book.id) ? "In Cart" : "Add to Cart"}
                   </button>
-
                 </div>
               </div>
             ))}

@@ -103,8 +103,8 @@ const OverlayCard = () => {
         <div className="custom-card">
           <img src="assets/images/sidecard.png" alt="Background" className="card-background" />
           <div className="card-content">
-            <p className="card-text">Have a Lyricist Soul inside of you? </p>
-            <button className="card-button" onClick={() => setShowModal(true)}>
+            <p className="card-text">Have a Lyricist Soul inside of you?</p>
+            <button className="card-button mt-md-3 mt-sm-2 fs-sm-4" onClick={() => setShowModal(true)}>
               Become a Member
             </button>
           </div>

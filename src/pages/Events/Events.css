@@ -5,7 +5,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* display: flex!important; */
   align-items: center;
 }
 
@@ -13,6 +12,7 @@
   transform: translateY(-8px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
 .ticket-button {
   background-color: #c30505;
   border: none;
@@ -23,6 +23,7 @@
   font-weight: 600;
   transition: background-color 0.3s ease;
 }
+
 .event-image {
   width: 30%;
   height: 30%;
@@ -64,4 +65,71 @@
 
 .pagination .page-link {
   color: #007bff;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 992px) {
+  .event-card {
+    flex-direction: column;
+  }
+
+  .event-image,
+  .card-body {
+    flex: 1 1 100%; /* Both sections will take full width on medium and smaller screens */
+  }
+
+  .event-image {
+    width: 100%;
+    height: auto; /* Adjust height to maintain aspect ratio */
+    margin-right: 0;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .event-image {
+    height: 150px; /* Set a fixed height for small screens */
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .card-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 576px) {
+  .event-image {
+    height: 120px; /* Set a smaller fixed height for extra small screens */
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .card-text {
+    font-size: 10px;
+  }
 }

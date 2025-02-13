@@ -61,15 +61,15 @@ const SuccessStoriesPage = () => {
           <div className="row">
             {stories.map((story) => (
               <div className="col-12 mb-4" key={story.id}>
-                <div className="cards story-card d-flex flex-row p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
+                <div className="cards story-card d-flex flex-lg-row flex-column p-3" style={{backgroundColor: "rgba(165, 239, 255, 0.2)"}}>
                   {story.file_path && (
                     <img
                       src={`${IMAGE_BASE_URL}${story.file_path}`}
                       alt={story.headline}
-                      className="img-fluid story-image w-50"
+                      className="img-fluid story-image col-lg-4 col-12"
                     />
                   )}
-                  <div className="card-body w-50 text-start text-light">
+                  <div className="card-body col-lg-8 col-12 text-start text-light">
                     <h2 className="card-title">{story.headline}</h2>
                     <h5> Posted on: {story.posting_time}</h5>
                     <h6 className="card-subtitle mb-2 text-highlight" >
@@ -77,29 +77,26 @@ const SuccessStoriesPage = () => {
                     </h6>
                     <p className="card-text text-start fw-normal">{story.details}</p>
                     <button 
-  type="button"
-  className="btn text-white"
-  onClick={() => handleShowModal(story)}
-  style={{
-    width: "176px",
-    height: "35px",
-    padding: "10px",
-    backgroundColor: "#c30505",
-    border: "none",
-   
-    fontSize: "18px",
-    fontWeight: "600",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transition: "background-color 0.3s ease"
-  }}
- 
->
-  Read More
-</button>
-
+                      type="button"
+                      className="btn text-white"
+                      onClick={() => handleShowModal(story)}
+                      style={{
+                        width: "176px",
+                        height: "35px",
+                        padding: "10px",
+                        backgroundColor: "#c30505",
+                        border: "none",
+                        fontSize: "18px",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "background-color 0.3s ease"
+                      }}
+                    >
+                      Read More
+                    </button>
                   </div>
                 </div>
               </div>

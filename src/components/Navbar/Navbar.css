@@ -5,54 +5,47 @@
   font-family: 'Inter', sans-serif;
   background-color: #000; /* Black background */
   padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: #fff; /* White text for contrast */
 }
 
-
 /* Logo Styling */
-.navbar-logo .logo {
+.navbar-brand .logo {
   width: 216px;
   height: 42px;
-  margin-left: 21px; /* Space from the left */
 }
 
 /* Navigation Links */
-.navbar-links {
+.navbar-nav {
   list-style: none; /* Remove bullets */
   display: flex; /* Display links horizontally */
-  gap: 25px; /* Add spacing between links */
+  gap: 15px; /* Add spacing between links */
   margin: 0;
   padding: 0;
-  margin-right: 4%;
 }
 
-.navbar-links li {
+.nav-item {
   font-size: 14px;
   font-weight: 600; /* Semi-bold for better readability */
 }
 
-.navbar-links a {
+.nav-link {
   text-decoration: none; /* Remove underline */
   color: #fff; /* White text */
   transition: color 0.3s ease; /* Smooth hover effect */
 }
 
-.navbar-links a:hover {
+.nav-link:hover {
   color: #007bff; /* Blue color on hover for interactivity */
 }
 
 /* Active Link Styling */
-.navbar-links .active a {
+.nav-item.active .nav-link {
   color: #007bff; /* Change this to your desired active link color */
   font-weight: bold; /* Optional: Make the active link bold */
 }
 
-/* Badge Styling */
 .badge {
-  position: absolute;
+  position: relative;
   top: -10px;
   right: -10px;
   padding: 5px 10px;
@@ -61,25 +54,36 @@
   color: white;
 }
 
-/* Responsive Design */
+/* Responsive Design Adjustments */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 15px;
+  .navbar-brand .logo {
+    width: 180px; /* Adjust logo size for smaller screens */
+    height: auto;
   }
 
-  .navbar-logo {
-    margin-bottom: 10px; /* Space below the logo for smaller screens */
+  .badge {
+    top: -5px;
+    right: -5px;
+    padding: 3px 6px; /* Adjust badge size for smaller screens */
   }
 
-  .navbar-links {
+  .navbar-collapse {
+    background-color: #333; /* Change background color when toggled */
+    padding: 10px; /* Add padding for better spacing */
+  }
+
+  .navbar-nav {
     flex-direction: column; /* Stack links vertically */
-    gap: 10px; /* Reduce spacing for compact layout */
-    width: 100%; /* Full-width for links */
+    gap: 10px; /* Reduce gap between links */
   }
 
-  .navbar-links li {
-    margin: 5px 0; /* Add vertical spacing between links */
+  .nav-item {
+    margin-left: 10px; /* Add left margin to nav items */
+  }
+}
+@media (max-width: 992px){
+  .navbar-collapse{
+    background-color: #333;
+    padding: 10px;
   }
 }
