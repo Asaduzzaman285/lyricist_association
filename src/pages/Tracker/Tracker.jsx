@@ -96,6 +96,7 @@ const Tracker = () => {
             <Form.Group controlId="orderNumber" className="flex-grow-1 me-2">
               <Form.Control
                 type="text"
+                style={{color: '#000'}}
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value)}
                 placeholder="Enter your order number"

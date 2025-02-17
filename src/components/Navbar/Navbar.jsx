@@ -37,17 +37,36 @@ const Navbar = ({ cart }) => {
             <li className={`nav-item ${location.pathname === '/merchandise' ? 'active' : ''}`}>
               <Link className="nav-link" to="/merchandise">Merchandise</Link>
             </li>
-            <li className={`nav-item ${location.pathname === '/cart' ? 'active' : ''}`}>
-              <Link className="nav-link" to="/cart">
-                <i className="fa-solid fa-cart-shopping"></i>
-                <span className="badge bg-danger ">
-                  {cartItemCount > 0 ? cartItemCount : ""}
-                </span>
-              </Link>
+            <li
+  className={`nav-item ${location.pathname === '/cart' ? 'active' : ''}`}
+  data-bs-toggle="popover"
+  data-bs-trigger="hover"
+  data-bs-html="true"
+  title="View your Cart"
+>
+  <Link className="nav-link" to="/cart">
+    <i className="fa-solid fa-cart-shopping"></i>
+    <span className="badge bg-danger">
+      {cartItemCount > 0 ? cartItemCount : ""}
+    </span>
+  </Link>
+</li> 
+            <li
+                  className={`nav-item ${location.pathname === '/tracker' ? 'active' : ''}`}
+                  data-bs-toggle="popover"
+                  data-bs-trigger="hover"
+                  data-bs-html="true"
+                  
+                  title="Track your Order"
+                        >
+         <Link className="nav-link" to="/tracker">
+    <i className="fas fa-shipping-fast"></i>
+                   </Link>
             </li>
-            <li className={`nav-item ${location.pathname === '/tracker' ? 'active' : ''}`}>
+
+            {/* <li className={`nav-item ${location.pathname === '/tracker' ? 'active' : ''}`}>
               <Link className="nav-link" to="/tracker"><i className="fas fa-shipping-fast"></i></Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

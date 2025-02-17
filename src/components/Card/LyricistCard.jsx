@@ -29,7 +29,7 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
     <Container fluid style={{ background: '#242424', color: 'white', marginBottom: '45px' }}>
       <Card className="w-100 my-3 card">
         <Card.Img variant="top" src={image} alt="Lyricist Image" loading="lazy" />
-        <Card.Body style={{ background: '#D9D9D9', textAlign: 'center',width: '100%' }}>
+        <Card.Body style={{ background: '#D9D9D9', textAlign: 'center', width: '100%' }}>
           <Card.Title style={{ textAlign: 'start' }}>{name}</Card.Title>
           <Card.Text
             className='text-dark'
@@ -47,7 +47,7 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
                 className="btn btn-link p-0 text-danger fw-bold"
                 style={{ fontSize: 'small' }}
               >
-               See More 
+                See More
               </button>
             )}
           </Card.Text>
@@ -83,7 +83,6 @@ const LyricistCard = ({ image, name, bio, additionalImage, videoUrl, position, s
           <p>{bio}</p>
           <div className="ratio ratio-16x9 mt-2">
             <iframe
-          
               key={key}
               src={getEmbedUrl(videoUrl)}
               allowFullScreen

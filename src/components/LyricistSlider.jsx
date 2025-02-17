@@ -5,6 +5,7 @@ import AdSpace from "./AdSpace/AdSpace";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./LyricistSlider.css";
+
 const LyricistSlider = () => {
   const [ads, setAds] = useState([]);
   const [members, setMembers] = useState([]);
@@ -59,12 +60,12 @@ const LyricistSlider = () => {
             {ads.length > 0 && <AdSpace imageUrl={`${baseUrl}/${ads[0].file_path}`} />}
           </div>
           <div className="col-12 col-md-12 col-sm-12">
-  <h2 className="text-light fs-3 text-start my-4 p-2" style={{ fontFamily: 'Inter, sans-serif' }}>
-    <span className="typograph-text-responsive d-block d-md-inline">
-      Lyricists of Bangladesh
-    </span>
-  </h2>
-</div>
+            <h2 className="text-light fs-3 text-start my-4 p-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <span className="typograph-text-responsive d-block d-md-inline">
+                Lyricists of Bangladesh
+              </span>
+            </h2>
+          </div>
         </div>
         <div className="container" style={{ marginTop: "-20px" }}>
           <Slider {...settings}>

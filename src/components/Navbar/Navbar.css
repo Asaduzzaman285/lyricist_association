@@ -87,3 +87,6 @@
     padding: 10px;
   }
 }
+.popover-header {
+  color: red !important;
+}
