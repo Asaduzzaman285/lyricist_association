@@ -90,3 +90,9 @@
 .popover-header {
   color: red !important;
 }
+
+@media (max-width: 575.98px) {
+  .navbar-toggler {
+    margin-right: 5%;
+  }
+}
