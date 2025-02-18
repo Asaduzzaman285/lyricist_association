@@ -79,7 +79,7 @@ const Events = () => {
                 </div>
                 
                 <div className="event-content text-start text-light ">
-                  <h2 className="event-title text-start">{event.title}</h2>
+                  <h2 className="event-title text-start ">{event.title}</h2>
                   <div className="event-details">
                     <h5 className="event-date">Date: {event.date}</h5>
                     <h5 className="event-location">Location: {event.location}</h5>

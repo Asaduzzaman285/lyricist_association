@@ -75,7 +75,7 @@ const SuccessStoriesPage = () => {
                     <h6 className="card-subtitle mb-2 text-highlight" >
                       By  <span style={{ color: "rgba(255, 149, 0, 1)" }}>{story.member_name}</span> 
                     </h6>
-                    <p className="card-text text-start fw-normal">{story.details}</p>
+                    <p className="card-text text-start h-auto fw-normal">{story.details}</p>
                     <button 
                       type="button"
                       className="btn text-white"
