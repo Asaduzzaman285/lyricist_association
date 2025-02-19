@@ -15,8 +15,8 @@ const Events = () => {
     payment: "",
   });
 
-  const baseUrl = "https://lyricistapi.wineds.com";
-  const imageUrl = "https://lyricistadminapi.wineds.com";
+  const baseUrl = "https://api.lyricistsassociationbd.com";
+  const imageUrl = "https://adminapi.lyricistsassociationbd.com";
   const apiUrl = `${baseUrl}/api/v1/events/list-paginate`;
 
   useEffect(() => {

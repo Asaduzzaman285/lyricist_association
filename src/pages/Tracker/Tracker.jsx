@@ -23,7 +23,7 @@ const Tracker = () => {
   const fetchOrderDetails = async (orderNo) => {
     setLoading(true);
     try {
-      const response = await fetch('https://lyricistapi.wineds.com/api/v1/order-tracking/order-details', {
+      const response = await fetch('https://api.lyricistsassociationbd.com/api/v1/order-tracking/order-details', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

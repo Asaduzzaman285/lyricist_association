@@ -37,7 +37,7 @@ const CartItem = ({ book, onRemove, onQuantityChange, index }) => {
         <div className="cart-item-image">
           {book.isOnSale && <div className="super-deal-badge text-light">Super Deal</div>}
           <img 
-            src={`https://lyricistadminapi.wineds.com${book.file_path}`} 
+            src={`https://adminapi.lyricistsassociationbd.com${book.file_path}`} 
             alt={book.name}
           />
         </div>
@@ -209,7 +209,7 @@ const Cart = () => {
 
   const fetchPaymentMethods = useCallback(async () => {
     try {
-      const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/payment-methods');
+      const response = await fetch('https://api.lyricistsassociationbd.com/api/v1/cart/payment-methods');
       const data = await response.json();
       if (data.status === 'success') {
         setPaymentMethods(data.data);
@@ -224,7 +224,7 @@ const Cart = () => {
       const queryString = productIds
         .map((id, index) => `product_ids[${index}]=${id}`)
         .join('&');
-      const response = await fetch(`https://lyricistapi.wineds.com/api/v1/cart/products-data?${queryString}`);
+      const response = await fetch(`https://api.lyricistsassociationbd.com/api/v1/cart/products-data?${queryString}`);
       const data = await response.json();
       if (data.status === 'success') {
         setProductsData(data.data);
@@ -272,7 +272,7 @@ const Cart = () => {
     };
 
     try {
-      const response = await fetch('https://lyricistapi.wineds.com/api/v1/cart/order-placement', {
+      const response = await fetch('https://api.lyricistsassociationbd.com/api/v1/cart/order-placement', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

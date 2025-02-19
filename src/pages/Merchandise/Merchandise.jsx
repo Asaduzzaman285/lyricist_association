@@ -13,7 +13,7 @@ const Merchandise = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://lyricistapi.wineds.com/api/v1/product/list-paginate")
+    fetch("https://api.lyricistsassociationbd.com/api/v1/product/list-paginate")
       .then((response) => response.json())
       .then((data) => setBooks(data.data.data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -62,7 +62,7 @@ const Merchandise = () => {
               >
                 <div className="book-image-container">
                   <img
-                    src={`https://lyricistadminapi.wineds.com${book.file_path}`}
+                    src={`https://adminapi.lyricistsassociationbd.com${book.file_path}`}
                     alt={book.name}
                     className="book-image mt-lg-3"
                   />

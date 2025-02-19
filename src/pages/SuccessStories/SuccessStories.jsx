@@ -11,8 +11,8 @@ const SuccessStoriesPage = () => {
   const [selectedStory, setSelectedStory] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const storiesPerPage = 4;
-  const API_BASE_URL = "https://lyricistapi.wineds.com";
-  const IMAGE_BASE_URL = "https://lyricistadminapi.wineds.com";
+  const API_BASE_URL = "https://api.lyricistsassociationbd.com";
+  const IMAGE_BASE_URL = "https://adminapi.lyricistsassociationbd.com";
 
   useEffect(() => {
     fetchStories(currentPage);

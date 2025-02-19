@@ -9,10 +9,10 @@ import "./LyricistSlider.css";
 const LyricistSlider = () => {
   const [ads, setAds] = useState([]);
   const [members, setMembers] = useState([]);
-  const baseUrl = "https://lyricistadminapi.wineds.com";
+  const baseUrl = "https://adminapi.lyricistsassociationbd.com";
 
   useEffect(() => {
-    fetch('https://lyricistapi.wineds.com/api/v1/home/data')
+    fetch('https://api.lyricistsassociationbd.com/api/v1/home/data')
       .then(response => response.json())
       .then(data => {
         setAds(data.data.home_ads);

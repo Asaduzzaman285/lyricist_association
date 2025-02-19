@@ -8,8 +8,8 @@ const MembersPage = () => {
   const [lyricists, setLyricists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [paginator, setPaginator] = useState({});
-  const API_BASE_URL = "https://lyricistapi.wineds.com";
-  const IMAGE_BASE_URL = "https://lyricistadminapi.wineds.com";
+  const API_BASE_URL = "https://api.lyricistsassociationbd.com";
+  const IMAGE_BASE_URL = "https://adminapi.lyricistsassociationbd.com";
   const DEFAULT_IMAGE = "assets/images/default-image.png";
 
   useEffect(() => {

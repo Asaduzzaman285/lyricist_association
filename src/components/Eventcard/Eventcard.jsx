@@ -8,7 +8,7 @@ const Eventcard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("https://lyricistapi.wineds.com/api/v1/events/list-paginate");
+        const response = await fetch("https://api.lyricistsassociationbd.com/api/v1/events/list-paginate");
         if (!response.ok) {
           throw new Error("Failed to fetch events");
         }
@@ -43,7 +43,7 @@ const Eventcard = () => {
             <div className="event-card row">
               <div className="card-image col-md-6 col-12">
                 <img
-                  src={`https://lyricistadminapi.wineds.com${closestEvent.file_path}`}
+                  src={`https://adminapi.lyricistsassociationbd.com${closestEvent.file_path}`}
                   alt={closestEvent.title}
                 />
               </div>

@@ -3,8 +3,8 @@ import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import "./Card.css";
 
-const API_BASE_URL = "https://lyricistapi.wineds.com";
-const FILE_UPLOAD_URL = "https://lyricistadminapi.wineds.com/api/v1/file/file-upload";
+const API_BASE_URL = "https://api.lyricistsassociationbd.com";
+const FILE_UPLOAD_URL = "https://adminapi.lyricistsassociationbd.com/api/v1/file/file-upload";
 
 const OverlayCard = () => {
   const [showModal, setShowModal] = useState(false);

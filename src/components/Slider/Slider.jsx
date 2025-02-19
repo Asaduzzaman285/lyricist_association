@@ -8,7 +8,7 @@ function Slider() {
   const [ads, setAds] = useState([]);
 
   useEffect(() => {
-    fetch('https://lyricistapi.wineds.com/api/v1/home/data')
+    fetch('https://api.lyricistsassociationbd.com/api/v1/home/data')
       .then(response => response.json())
       .then(data => {
         setSliders(data.data.home_main_slider);
