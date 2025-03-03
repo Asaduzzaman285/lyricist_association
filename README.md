@@ -1,14 +1,13 @@
 #  Local To Git
 
 ```
-
 npm run build 
 cp .htaccess.server.cpanel dist/.htaccess
+git branch -d cpanel
 git add .
 git commit -m "comment"
-git push 
-git branch -d cpanel
-git checkout -b cpanel origin/cpanel
+git push --force
+git checkout -b cpanel
 Get-ChildItem -Path . -Exclude '.gitignore', 'node_modules', 'dist' | Remove-Item -Recurse -Force
 Move-Item -Path "dist\*" -Destination "." -Force
 git add .
