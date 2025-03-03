@@ -1,8 +1,13 @@
 #  Local To Git
 
 ```
+git add .
+git commit -m "comment"
+git push 
+npm run build 
+
 git branch -d cpanel
-git checkout -b cpanel
+git checkout -b cpanel origin/cpanel
 Get-ChildItem -Path . -Exclude '.gitignore', 'node_modules', 'dist' | Remove-Item -Recurse -Force
 Move-Item -Path "dist\*" -Destination "." -Force
 git add .
