@@ -1,8 +1,23 @@
-# React + Vite
+#  Local To Git
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```
+git branch -d cpanel
+git checkout -b cpanel
+Get-ChildItem -Path . -Exclude '.gitignore', 'node_modules', 'dist' | Remove-Item -Recurse -Force
+Move-Item -Path "dist\*" -Destination "." -Force
+git add .
+git commit -m "deployed to cpanel"
+git push -u origin cpanel --force
+git checkout main
+```
 
-Currently, two official plugins are available:
+# Cpanel pulling
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+cd public_html
+rm -rf ./*
+rm -rf .[^.]*
+
+git clone https://github.com/Asaduzzaman285/lyricist_association.git .
+git checkout cpanel
+```

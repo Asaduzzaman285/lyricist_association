@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Card.css';
 
 const getEmbedUrl = (url) => {
+  if (!url) return '';
   const match = url.match(/(?:youtube\.com\/(?:.*[?&]v=|embed\/)|youtu\.be\/)([\w-]+)/);
   return match ? `https://www.youtube.com/embed/${match[1]}` : '';
 };

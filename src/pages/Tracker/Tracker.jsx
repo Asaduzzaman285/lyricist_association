@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import { Form, Button, Table, ProgressBar } from 'react-bootstrap';
+import { Form, Button, Table } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Tracker.css';
 
@@ -52,37 +52,89 @@ const Tracker = () => {
     fetchOrderDetails(orderNumber);
   };
 
-  const getProgressBarVariant = (statusCode) => {
-    switch (statusCode) {
-      case 1: return 'info'; // Processing
-      case 2: return 'warning'; // On the way
-      case 3: return 'danger'; // Cancelled
-      case 4: return 'success'; // Delivered
-      default: return 'light';
-    }
+  const getOrderStatusInfo = (statusCode) => {
+    const statusMap = {
+      1: { label: 'Processing', completed: true, date: 'Today', time: '11:29 AM', description: 'Your order is being processed' },
+      2: { label: 'On the way', completed: true, date: 'Tomorrow', time: '12:00 PM', description: 'Your order is on the way' },
+      3: { label: 'Cancelled', completed: false, date: '', time: '', description: 'Your order has been cancelled' },
+      4: { label: 'Delivered', completed: true, date: 'Yesterday', time: '15:20 PM', description: 'Your order has been delivered' },
+    };
+
+    // Determine which steps are active based on status code
+    const timelineItems = [
+      { 
+        label: 'Processing', 
+        isActive: statusCode >= 1, 
+        isCompleted: statusCode > 1, 
+        isCancelled: statusCode === 3,
+        date: 'Today',
+        time: '11:29 AM',
+        description: 'Your order is being processed'
+      },
+      { 
+        label: 'On the way', 
+        isActive: statusCode >= 2, 
+        isCompleted: statusCode > 2, 
+        isCancelled: statusCode === 3,
+        date: 'Tomorrow',
+        time: '12:00 PM',
+        description: 'Your order is on the way' 
+      },
+      { 
+        label: statusCode === 3 ? 'Cancelled' : 'Delivered', 
+        isActive: statusCode >= 3, 
+        isCompleted: statusCode > 3, 
+        isCancelled: statusCode === 3,
+        date: 'Expected',
+        time: '15:20 PM',
+        description: statusCode === 3 ? 'Your order has been cancelled' : 'Your order will be delivered soon' 
+      }
+    ];
+
+    return timelineItems;
   };
 
-  const renderProgressBar = (statusCode) => {
-    const progressValues = [33, 33, 34];
-    const labels = ['Processing', 'On the way', 'Delivered'];
-    const variants = ['info', 'warning', 'success'];
-
-    if (statusCode === 3) {
-      labels[2] = 'Cancelled';
-      variants[2] = 'danger';
-    }
-
+  const renderTimelineProgressBar = (statusCode) => {
+    const timelineItems = getOrderStatusInfo(statusCode);
+    
     return (
-      <ProgressBar style={{ height: '2rem' }}>
-        {progressValues.map((value, index) => (
-          <ProgressBar
-            key={index}
-            now={statusCode > index ? value : 0}
-            variant={statusCode > index ? variants[index] : 'light'}
-            label={statusCode > index ? labels[index] : ''}
-          />
-        ))}
-      </ProgressBar>
+      <div className="card mb-4">
+        <div className="card-header">
+          <h5 className="card-title m-0">Order Status</h5>
+        </div>
+        <div className="card-body pt-1">
+          <ul className="timeline pb-0 mb-0">
+            {timelineItems.map((item, index) => (
+              <li 
+                key={index} 
+                className={`timeline-item ${
+                  item.isActive ? 'timeline-item-transparent border-primary' : 
+                  item.isCancelled ? 'timeline-item-transparent border-danger' : 
+                  'timeline-item-transparent border-secondary'
+                } ${
+                  index === timelineItems.length - 1 ? 'border-transparent pb-0' : 
+                  !item.isActive && index !== timelineItems.length - 1 ? 'border-dashed' : ''
+                }`}
+              >
+                <span className={`timeline-point ${
+                  item.isActive ? 'timeline-point-primary' : 
+                  item.isCancelled ? 'timeline-point-danger' : 
+                  'timeline-point-secondary'
+                }`}></span>
+                <div className={`timeline-event ${index === timelineItems.length - 1 ? 'pb-0' : ''}`}>
+                  <div className="timeline-header">
+                    <h6 className="mb-0">{item.label}</h6>
+                    {item.isActive && <small className="text-body-secondary">{item.date} {item.time}</small>}
+                  </div>
+                  <p className={`mt-${index === timelineItems.length - 1 ? '1' : '3'} mb-${index === timelineItems.length - 1 ? '0' : '3'}`}>
+                    {item.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     );
   };
 
@@ -119,9 +171,9 @@ const Tracker = () => {
 
         {orderDetails && !loading && (
           <div>
-            {/* Status Timeline */}
+            {/* Timeline Progress Bar */}
             <div className="mb-4">
-              {renderProgressBar(orderDetails.order_status.id)}
+              {renderTimelineProgressBar(orderDetails.order_status.id)}
             </div>
 
             {/* Order Details Tables */}
