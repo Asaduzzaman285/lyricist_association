@@ -1,11 +1,12 @@
 #  Local To Git
 
 ```
+
+npm run build 
+cp .htaccess.server.cpanel dist/.htaccess
 git add .
 git commit -m "comment"
 git push 
-npm run build 
-
 git branch -d cpanel
 git checkout -b cpanel origin/cpanel
 Get-ChildItem -Path . -Exclude '.gitignore', 'node_modules', 'dist' | Remove-Item -Recurse -Force
