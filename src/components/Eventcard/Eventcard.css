@@ -15,9 +15,9 @@
 .typograph-text {
   width: 150px;
   height: 85px;
-  font-family: "Licorice", serif;
+  /* font-family: "Licorice", serif; */
   font-weight: 400;
-  font-size: 70px;
+  font-size: 60px;
 }
 
 /* Card Styling */
