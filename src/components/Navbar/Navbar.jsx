@@ -34,6 +34,9 @@ const Navbar = ({ cart }) => {
             <li className={`nav-item ${location.pathname === '/events' ? 'active' : ''}`}>
               <Link className="nav-link" to="/events">Events</Link>
             </li>
+            <li className={`nav-item ${location.pathname === '/podcast' ? 'active' : ''}`}>
+              <Link className="nav-link" to="/podcast">Podcast</Link>
+            </li>
             <li className={`nav-item ${location.pathname === '/merchandise' ? 'active' : ''}`}>
               <Link className="nav-link" to="/merchandise">Merchandise</Link>
             </li>

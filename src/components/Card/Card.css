@@ -63,7 +63,12 @@
   line-height: 1.4;
   margin-bottom: 0.5rem;
 }
+.card-img-top{
 
+ max-width: 100%;
+  max-height: 252px;
+  object-fit: cover;
+}
 .see-more-btn {
   border: none;
   background: none;
@@ -179,7 +184,6 @@
   }
 }
 
-/* Slick Slider Adjustments */
 .slick-slide {
   padding: 0 10px;
 }

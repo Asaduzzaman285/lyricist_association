@@ -24,5 +24,6 @@ rm -rf ./*
 rm -rf .[^.]*
 
 git clone https://github.com/Asaduzzaman285/lyricist_association.git .
-git checkout cpanel
+git checkout -b cpanel origin/cpanel
+
 ```

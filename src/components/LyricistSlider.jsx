@@ -60,11 +60,11 @@ const LyricistSlider = () => {
             {ads.length > 0 && <AdSpace imageUrl={`${baseUrl}/${ads[0].file_path}`} />}
           </div>
           <div className="col-12 col-md-12 col-sm-12">
-            <h2 className="text-light fs-3 text-start my-4 p-2" style={{ fontFamily: 'Inter, sans-serif' }}>
-              <span className="typograph-text-responsive d-block d-md-inline">
-                Lyricists of Bangladesh
-              </span>
-            </h2>
+                  <h2 className="text-light fs-3 text-start my-4 p-2" style={{ fontFamily: 'Exo, sans-serif' }}>
+          <span className="typograph-text-responsive d-block d-md-inline">
+          Featured Lyricists
+          </span>
+        </h2>
           </div>
         </div>
         <div className="container" style={{ marginTop: "-20px" }}>

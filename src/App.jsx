@@ -55,14 +55,15 @@ const EventsPage = React.lazy(() => import("./pages/Events/Events"));
 const MerchandisePage = React.lazy(() => import("./pages/Merchandise/Merchandise"));
 const Cart = React.lazy(() => import("./pages/Cart/Cart"));
 const Tracker = React.lazy(() => import("./pages/Tracker/Tracker"));
-const PodcastPage = () => (
-  <>
-    <Navbar />
-    <div className="container">
-      <h1>Podcast Page</h1>
-    </div>
-  </>
-);
+const Podcast= React.lazy(() => import("./pages/Podcast/Podcast"));
+// const PodcastPage = () => (
+//   <>Podcast
+//     <Navbar />
+//     <div className="container">
+//       <h1>Podcast Page</h1>
+//     </div>
+//   </>
+// );
 
 const ECCommitteePage = () => (
   <>
@@ -97,11 +98,11 @@ const App = () => {
               <Route path="/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/merchandise" element={<MerchandisePage />} />
-              <Route path="/podcast" element={<PodcastPage />} />
+              {/* <Route path="/podcast" element={<PodcastPage />} /> */}
               <Route path="/ec-committee" element={<ECCommitteePage />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/tracker" element={<Tracker />} />
-
+              <Route path="/podcast" element={<Podcast />} />
             </Routes>
           </Suspense>
         </Router>

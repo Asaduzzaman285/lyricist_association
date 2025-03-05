@@ -2,9 +2,9 @@
 
 /* Typography Text Styling */
 .typograph-text-responsive {
-  font-family: 'Licorice', serif;
+  font-family: 'Exo', sans-serif;
   font-weight: 400;
-  font-size: 70px; /* Default font size for large screens */
+  font-size: 60px; /* Default font size for large screens */
 }
 
 /* Responsive Design Adjustments */
