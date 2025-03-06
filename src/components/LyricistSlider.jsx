@@ -12,14 +12,17 @@ const LyricistSlider = () => {
   const baseUrl = "https://adminapi.lyricistsassociationbd.com";
 
   useEffect(() => {
-    fetch('https://api.lyricistsassociationbd.com/api/v1/home/data')
-      .then(response => response.json())
-      .then(data => {
+    fetch("https://api.lyricistsassociationbd.com/api/v1/home/data")
+      .then((response) => response.json())
+      .then((data) => {
         setAds(data.data.home_ads);
         setMembers(data.data.members);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  // Limit to 6-7 members manually
+  const limitedMembers = members.slice(0, 7);
 
   const settings = {
     dots: true,
@@ -35,24 +38,29 @@ const LyricistSlider = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
-        }
-      }
-    ]
+          initialSlide: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div
       className="container-fluid"
-      style={{ background: "#242424", color: "white", paddingBottom: "45px", marginTop: "-24px" }}
+      style={{
+        background: "#242424",
+        color: "white",
+        paddingBottom: "45px",
+        marginTop: "-24px",
+      }}
     >
       <div className="container">
         <div className="row align-items-center">
@@ -60,16 +68,19 @@ const LyricistSlider = () => {
             {ads.length > 0 && <AdSpace imageUrl={`${baseUrl}/${ads[0].file_path}`} />}
           </div>
           <div className="col-12 col-md-12 col-sm-12">
-                  <h2 className="text-light fs-3 text-start my-4 p-2" style={{ fontFamily: 'Exo, sans-serif' }}>
-          <span className="typograph-text-responsive d-block d-md-inline">
-          Featured Lyricists
-          </span>
-        </h2>
+            <h2
+              className="text-light fs-3 text-start my-4 p-2"
+              style={{ fontFamily: "Exo, sans-serif" }}
+            >
+              <span className="typograph-text-responsive d-block d-md-inline">
+                Featured Lyricists
+              </span>
+            </h2>
           </div>
         </div>
         <div className="container" style={{ marginTop: "-20px" }}>
           <Slider {...settings}>
-            {members.map((member, index) => (
+            {limitedMembers.map((member, index) => (
               <div key={index}>
                 <LyricistCard
                   image={`${baseUrl}${member.file_path}`}
@@ -88,5 +99,6 @@ const LyricistSlider = () => {
     </div>
   );
 };
+
 
 export default LyricistSlider;

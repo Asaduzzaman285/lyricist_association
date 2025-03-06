@@ -1,1 +1,0 @@
-import{j as s,N as a}from"./index-CtmbQO60.js";const e=()=>s.jsxs(s.Fragment,{children:[s.jsx(a,{}),s.jsx("div",{className:"container-fluid max-vh-100 d-flex justify-content-center align-items-center bg-dark",children:s.jsx("img",{src:"assets/images/podcast.jpg",alt:"Podcast Image",className:"img-fluid",style:{maxHeight:"80%",maxWidth:"100%"}})})]});export{e as default};

@@ -200,3 +200,7 @@
     text-align: center;
   }
 }
+.custom-border {
+  border: 2px solid #abaebba8;  /* Customize the color to make the border more visible */
+  border-radius: 5px;          /* Optional: Adds rounded corners for a better look */
+}

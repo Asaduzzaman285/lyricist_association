@@ -141,64 +141,7 @@ const OverlayCard = () => {
       </div>
 
       {/* Modal for Membership Form */}
-      {/* <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Become a Member</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Upload Image</Form.Label>
-              <Form.Control type="file" onChange={handleFileChange} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Bio</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="bio"
-                value={formData.bio}
-                onChange={handleInputChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Video URL</Form.Label>
-              <Form.Control
-                type="text"
-                name="videoUrl"
-                value={formData.videoUrl}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-
-            <div className="text-end">
-              <Button
-                variant="secondary"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </Button>
-              <Button type="submit" variant="primary" className="ms-2">
-                Submit Membership Request
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal> */}
+    
       <Modal show={showModal} onHide={() => setShowModal(false)}>
   <Modal.Header closeButton>
     <Modal.Title>Become a Member</Modal.Title>

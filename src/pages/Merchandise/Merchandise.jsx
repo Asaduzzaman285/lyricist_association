@@ -50,7 +50,7 @@ const Merchandise = () => {
       <div className="container-fluid bg-dark min-h-screen" style={{minHeight:"100vh"}}>
         <div className="container py-4">
           <h1 className="text-light text-start mb-5">
-            <span className="typograph-text">All Valuable Books</span>
+            <span className="typograph-text">Merchandise Items</span>
           </h1>
 
           <div className="book-list">

@@ -50,7 +50,7 @@ const Eventcard = () => {
               <div className="card-contents col-md-6 col-12 text-light">
                 <h2 className="artist-name">
                   <span className="typograph-text">{closestEvent.artist}</span>{" "}
-                  Rhythm Odyssey
+                  {closestEvent.title}
                 </h2>
                 <p className="details">{closestEvent.description}</p>
                 <div className="event-info">

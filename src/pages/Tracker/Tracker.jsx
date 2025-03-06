@@ -143,7 +143,7 @@ const Tracker = () => {
       <Navbar />
       <div className="container mt-4">
         <h1>Order Tracker</h1>
-        <Form onSubmit={handleSearch} className="mb-4">
+        {/* <Form onSubmit={handleSearch} className="mb-4">
           <div className="d-flex align-items-center">
             <Form.Group controlId="orderNumber" className="flex-grow-1 me-2">
               <Form.Control
@@ -159,7 +159,25 @@ const Tracker = () => {
               Search
             </Button>
           </div>
-        </Form>
+        </Form> */}
+         <Form onSubmit={handleSearch} className="mb-4">
+      <div className="d-flex align-items-center">
+        <Form.Group controlId="orderNumber" className="flex-grow-1 me-2">
+          <Form.Control
+            type="text"
+            className="custom-border"
+            style={{ color: '#000' }}
+            value={orderNumber}
+            onChange={(e) => setOrderNumber(e.target.value)}
+            placeholder="Enter your order number"
+            required
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Search
+        </Button>
+      </div>
+    </Form>
 
         {loading && (
           <div className="text-center py-4">

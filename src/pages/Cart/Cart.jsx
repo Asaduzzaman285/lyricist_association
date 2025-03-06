@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Navbar from '../../components/Navbar/Navbar';
@@ -101,7 +101,7 @@ const OrderSummary = ({ subtotal, deliveryCharge, total }) => (
 );
 
 // ShippingForm Component
-const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
+const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange, isLoading }) => (
   <Form onSubmit={onSubmit} className="shipping-form">
     <h3>Shipping Information</h3>
     <div className="form-row ">
@@ -114,6 +114,7 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
           onChange={onChange}
           required
           className="form-control"
+          disabled={isLoading}
         />
       </Form.Group>
       
@@ -126,6 +127,7 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
           onChange={onChange}
           required
           className="form-control"
+          disabled={isLoading}
         />
       </Form.Group>
     </div>
@@ -139,6 +141,7 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
         onChange={onChange}
         required
         className="form-control"
+        disabled={isLoading}
       />
     </Form.Group>
 
@@ -152,6 +155,7 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
         onChange={onChange}
         required
         className="form-control"
+        disabled={isLoading}
       />
     </Form.Group>
 
@@ -163,6 +167,7 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
         onChange={onChange}
         required
         className="form-select"
+        disabled={isLoading}
       >
         <option value="">Select Payment Method</option>
         {paymentMethods.map(method => (
@@ -178,8 +183,23 @@ const ShippingForm = ({ userInfo, paymentMethods, onSubmit, onChange }) => (
       type="submit"
       className="submit-button"
       style={{ backgroundColor: "red" }}
+      disabled={isLoading}
     >
-      Place Order
+      {isLoading ? (
+        <>
+          <Spinner 
+            as="span" 
+            animation="border" 
+            size="sm" 
+            role="status" 
+            aria-hidden="true" 
+            className="me-2"
+          />
+          Processing...
+        </>
+      ) : (
+        'Place Order'
+      )}
     </Button>
   </Form>
 );
@@ -189,6 +209,7 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [productsData, setProductsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: '',
     phone: '',
@@ -253,6 +274,7 @@ const Cart = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const payload = {
       name: userInfo.name,
@@ -272,6 +294,13 @@ const Cart = () => {
     };
 
     try {
+      // Create a promise that resolves after 2-3 seconds
+      const delayPromise = new Promise(resolve => {
+        const randomDelay = Math.floor(Math.random() * 1000) + 2000; // 2-3 seconds
+        setTimeout(resolve, randomDelay);
+      });
+
+      // Send the API request
       const response = await fetch('https://api.lyricistsassociationbd.com/api/v1/cart/order-placement', {
         method: 'POST',
         headers: {
@@ -281,6 +310,10 @@ const Cart = () => {
       });
 
       const data = await response.json();
+      
+      // Wait for both the API response and the delay
+      await delayPromise;
+
       if (data.status === 'success') {
         setCart([]);
         setUserInfo({
@@ -293,6 +326,7 @@ const Cart = () => {
         localStorage.removeItem('cart');
         navigate('/tracker?order=success&order_id=' + data.data.order_number);
       } else {
+        setIsLoading(false);
         Swal.fire({
           title: 'Error placing order',
           text: 'Please try again.',
@@ -302,6 +336,7 @@ const Cart = () => {
       }
     } catch (error) {
       console.error('Error placing order:', error);
+      setIsLoading(false);
       Swal.fire({
         title: 'Error placing order',
         text: 'Please try again.',
@@ -364,11 +399,12 @@ const Cart = () => {
               </div>
 
               <div className="shipping-form-container">
-                <ShippingForm
+                <ShippingForm   
                   userInfo={userInfo}
                   paymentMethods={paymentMethods}
                   onSubmit={handleSubmit}
                   onChange={handleChange}
+                  isLoading={isLoading}
                 />
               </div>
             </>

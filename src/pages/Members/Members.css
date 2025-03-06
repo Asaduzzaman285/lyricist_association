@@ -144,3 +144,27 @@
     font-size: 30px;
   }
 }
+/* Members.css */
+.alphabet-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 10px; */
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .alphabet-filter {
+    justify-content: flex-start;
+  }
+
+  .filter-options {
+    justify-content: flex-end;
+  }
+}
